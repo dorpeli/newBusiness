@@ -2,58 +2,113 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-  <title>אוכל ביתי בריא </title>
+  <title>אוכל ביתי בריא למשרדים</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* הגדרות כלליות - צבעים בהשראת התמונה */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Times New Roman', Times, serif; /* פונט קלאסי יותר */
       direction: rtl;
       margin: 0;
-      background: #f7f7f7;
-      color: #222;
+      /* רקע בגוון קרם/אופ-וויט עדין כמו בתמונה */
+      background: #fbf9f6; 
+      color: #333;
     }
 
     .container {
       max-width: 700px;
-      margin: auto;
-      padding: 30px;
+      margin: 30px auto;
+      padding: 40px;
       background: white;
+      border: 1px solid #e0d8c3; /* מסגרת עדינה */
+      border-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* צל עדין מאוד */
     }
 
+    /* כותרת ראשית - ממורכזת ובצבע חום-יין */
     h1 {
-      color: #1a7f5a;
-      margin-bottom: 10px;
+      color: #8c2a32; /* צבע חום-יין מהתמונה */
+      text-align: center;
+      margin-bottom: 5px;
+      font-size: 32px;
+      font-weight: normal; /* לא מודגש מדי, למראה קלאסי */
+    }
+
+    /* קו הפרדה מעוטר מתחת לכותרת - כמו בתמונה */
+    .title-divider {
+      width: 100px;
+      height: 2px;
+      background: #c3a673; /* צבע זהב-זית מהתמונה */
+      margin: 0 auto 30px auto;
     }
 
     .subtitle {
       font-size: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
+      color: #666;
+      text-align: center;
+    }
+
+    /* עיצוב המנות - נקי יותר, בלי ה'קופסאות' האפורות */
+    .menu-item {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee; /* קו הפרדה עדין בין מנה למנה */
+      position: relative;
+    }
+
+    /* עיבוי שמות המנות - בקשה ספציפית */
+    .dish-name {
+      font-size: 20px;
+      font-weight: bold; /* מודגש */
+      color: #8c2a32; /* צבע חום-יין */
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dish-description {
+      font-size: 16px;
       color: #555;
+      display: block;
+      margin-left: 80px; /* משאיר מקום למחיר */
     }
 
-    .box {
-      background: #f0f0f0;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
+    /* עיצוב המחיר - בצד שמאל ובצבע זהב */
     .price {
+      font-size: 18px;
       font-weight: bold;
-      color: #1a7f5a;
+      color: #c3a673; /* צבע זהב-זית */
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
+    /* הערות ופרטים נוספים */
+    .info-box {
+      background: #f9f5eb;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 40px;
+      border: 1px solid #e0d8c3;
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* כפתור הווטסאפ - נשאר ירוק ובולט, אבל בעיצוב נקי יותר */
     .btn {
       display: block;
       text-align: center;
       background: #25D366;
       color: white;
-      padding: 15px;
-      border-radius: 10px;
+      padding: 18px;
+      border-radius: 5px;
       text-decoration: none;
-      font-size: 18px;
-      margin-top: 20px;
+      font-size: 19px;
+      font-weight: bold;
+      margin-top: 30px;
+      transition: background 0.3s;
     }
 
     .btn:hover {
@@ -66,37 +121,41 @@
 
 <div class="container">
 
-  <h1>אוכל ביתי בריא </h1>
+  <h1>אוכל ביתי בריא למשרדים</h1>
+  <div class="title-divider"></div>
 
   <div class="subtitle">
     ארוחות צהריים איכותיות, ללא שמני זרעים, מבושלות מחומרי גלם טריים – מגיע ישירות למשרד.
   </div>
 
-  <div class="box">
-    🍗 עוף בתנור + אורז + ירקות<br>
+  <div class="menu-item">
     <span class="price">60 ₪</span>
+    <span class="dish-name">עוף בתנור + אורז + ירקות</span>
+    <span class="dish-description">כרעי עוף עסיסיות בתיבול ביתי, מוגש עם אורז לבן קלאסי וירקות שורש קלויים.</span>
   </div>
 
-  <div class="box">
-    🥩 קציצות בקר + פירה + סלט<br>
+  <div class="menu-item">
     <span class="price">65 ₪</span>
+    <span class="dish-name">קציצות בקר + פירה + סלט</span>
+    <span class="dish-description">קציצות בקר נימוחות ברוטב עגבניות עשיר, על מצע פירה תפוחי אדמה קטיפתי וסלט ירוק רענן.</span>
   </div>
 
-  <div class="box">
-    🐟 סלמון + קינואה + ירקות<br>
+  <div class="menu-item">
     <span class="price">70 ₪</span>
+    <span class="dish-name">סלמון + קינואה + ירקות</span>
+    <span class="dish-description">פילה סלמון אפוי בעשבי תיבול, מוגש עם קינואה צבעונית ולקט ירקות ירוקים מאודים.</span>
   </div>
 
-  <div class="box">
-    ⏰ הזמנות עד 10:00 בבוקר<br>
+  <div class="info-box">
+    ⏰ <strong>הזמנות עד 10:00 בבוקר</strong><br>
     🚚 משלוחים למשרדים באזור המרכז<br>
-    💡 מתאים לארוחת צהריים בריאה ונוחה
+    💡 מתאים לארוחת צהריים בריאה, מזינה ונוחה.
   </div>
 
   <a class="btn"
      href="https://wa.me/972504300624?text=היי%20אני%20רוצה%20להזמין%20אוכל%20למשרד"
      target="_blank">
-    להזמנה ב-WhatsApp
+    להזמנה מהירה ב-WhatsApp
   </a>
 
 </div>
