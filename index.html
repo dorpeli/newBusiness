@@ -2,7 +2,7 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-  <title>אוכל ביתי בריא אורגני ומזין</title>
+  <title>אוכל ביתי בריא</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -241,13 +241,14 @@
 
   <div class="subtitle">
     בנה את התפריט השבועי שלך בדיוק כמו שאתה אוהב.<br>
-    רכיבים אורגניים בלבד, בישול בשמן אבוקדו וללא שמני זרעים.
+    רכיבים אורגניים, בישול בשמן אבוקדו בלבד וללא שמני זרעים מזיקים.
   </div>
 
   <div class="price-guide">
     💡 <strong>מחירון הארוחות שלנו:</strong><br>
-    • מנה עיקרית לבחירה: <strong></strong><br>
-    • מנת תוספת חמה לבחירה: <strong></strong>
+    • מנה עיקרית לבחירה (כ-400 גרם לפני בישול): <strong>45 ₪</strong><br>
+    • מנת אושפלו (אורז, בשר וירקות מבושלים יחד - מנה מושלמת): <strong>60 ₪</strong><br>
+    • מנת תוספת חמה לבחירה: <strong>20 ₪</strong>
   </div>
 
   <div class="slider-section">
@@ -257,7 +258,7 @@
     </div>
     <div class="slider-container">
       <span class="slider-limits">0</span>
-      <input type="range" id="main-slider" min="4" max="7" value="4">
+      <input type="range" id="main-slider" min="0" max="7" value="0">
       <span class="slider-limits">7</span>
     </div>
   </div>
@@ -312,7 +313,6 @@
 <script>
   // רשימת המנות והמחירים
   const mainOptions = [
-    { name: "בחר עיקרית", value: "", price: 0 },
     { name: "קציצות בקר ברוטב עגבניות (45 ₪)", value: "קציצות בקר ברוטב עגבניות", price: 45 },
     { name: "חזה עוף מוקפץ (45 ₪)", value: "חזה עוף מוקפץ", price: 45 },
     { name: "כרעיים בתנור (45 ₪)", value: "כרעיים בתנור", price: 45 },
