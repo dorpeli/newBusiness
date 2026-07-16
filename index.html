@@ -47,100 +47,95 @@
       line-height: 1.5;
     }
 
-    .menu-item {
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
-      position: relative;
+    /* עיצוב סליידרים */
+    .slider-section {
+      background: #fdfcf9;
+      border: 1px solid #e9e3d5;
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 25px;
     }
 
-    .dish-name {
-      font-size: 20px;
+    .slider-title {
+      font-size: 18px;
       font-weight: bold;
       color: #8c2a32;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .dish-description {
-      font-size: 15px;
-      color: #555;
-      display: block;
-      margin-left: 100px;
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #c3a673;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-
-    /* עיצוב התוספות */
-    .selection-container {
+      margin-bottom: 10px;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slider-title span.count {
+      color: #c3a673;
+      font-size: 22px;
+    }
+
+    .slider-container {
+      display: flex;
       align-items: center;
       gap: 15px;
-      margin-top: 10px;
     }
 
-    .select-label {
-      font-size: 14px;
-      color: #666;
+    input[type="range"] {
+      flex: 1;
+      accent-color: #8c2a32;
+      cursor: pointer;
+    }
+
+    .slider-limits {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* דינמיות - בחירת מנות */
+    .dynamic-list {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .selection-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed #eee;
+      gap: 15px;
+    }
+
+    .selection-row label {
+      font-size: 16px;
       font-weight: bold;
+      color: #555;
+      min-width: 100px;
     }
 
     select {
+      flex: 1;
       font-family: inherit;
-      padding: 6px 12px;
+      padding: 10px;
       border: 1px solid #e0d8c3;
       border-radius: 4px;
       background: #fff;
-      font-size: 14px;
+      font-size: 15px;
       outline: none;
       cursor: pointer;
     }
 
-    /* בקרי כמות פלוס ומינוס */
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-right: auto;
-    }
-
-    .qty-btn {
-      width: 32px;
-      height: 32px;
-      border: 1px solid #e0d8c3;
-      background: #fbf9f6;
-      color: #8c2a32;
-      font-size: 18px;
-      font-weight: bold;
+    /* מחירון קטן קבוע מעל */
+    .price-guide {
+      font-size: 15px;
+      color: #555;
+      background: #faf8f5;
+      padding: 15px;
       border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
+      border: 1px solid #eee;
+      margin-bottom: 30px;
+      line-height: 1.6;
     }
 
-    .qty-btn:hover {
-      background: #8c2a32;
-      color: white;
-      border-color: #8c2a32;
-    }
-
-    .qty-val {
-      font-size: 18px;
-      font-weight: bold;
-      min-width: 20px;
-      text-align: center;
+    .price-guide strong {
+      color: #8c2a32;
     }
 
     /* טופס פרטי לקוח */
@@ -245,87 +240,51 @@
   <div class="title-divider"></div>
 
   <div class="subtitle">
-    ארוחות צהריים אורגניות ונקיות משמני זרעים, המבושלות עם שמן אבוקדו בלבד. <br>
-    חומרי גלם טריים ואיכותיים בהזמנה שבועית - מגיע ישירות למשרד.
+    בנה את התפריט השבועי שלך בדיוק כמו שאתה אוהב.<br>
+    רכיבים אורגניים, בישול בשמן אבוקדו בלבד וללא שמני זרעים מזיקים.
   </div>
 
-  <!-- מנה 1 -->
-  <div class="menu-item" data-id="meatballs" data-price="65" data-name="קציצות בקר ברוטב עגבניות">
-    <span class="price">65 ₪</span>
-    <span class="dish-name">קציצות בקר ברוטב עגבניות</span>
-    <span class="dish-description">
-      קציצות בקר נימוחות (400 גרם בשר נטו לפני בישול) ברוטב עגבניות עשיר. מבושל עם שמן אבוקדו.<br>
-      <strong>ערכים משוערים:</strong> כ-520 קלוריות | כ-35 גרם חלבון (לא כולל תוספת).
-    </span>
-    <div class="selection-container">
-      <span class="select-label">בחר תוספת:</span>
-      <select class="side-dish">
-        <option value="אורז בסמטי">אורז בסמטי</option>
-        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
-        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
-      </select>
-      <div class="quantity-controls">
-        <button class="qty-btn minus">-</button>
-        <span class="qty-val">0</span>
-        <button class="qty-btn plus">+</button>
-      </div>
+  <div class="price-guide">
+    💡 <strong>מחירון הארוחות שלנו:</strong><br>
+    • מנה עיקרית לבחירה (כ-400 גרם לפני בישול): <strong>45 ₪</strong><br>
+    • מנת אושפלו (אורז, בשר וירקות מבושלים יחד - מנה מושלמת): <strong>60 ₪</strong><br>
+    • מנת תוספת חמה לבחירה: <strong>20 ₪</strong>
+  </div>
+
+  <div class="slider-section">
+    <div class="slider-title">
+      <span>כמה מנות עיקריות תרצה השבוע?</span>
+      <span class="count" id="main-count-display">0</span>
+    </div>
+    <div class="slider-container">
+      <span class="slider-limits">0</span>
+      <input type="range" id="main-slider" min="0" max="7" value="0">
+      <span class="slider-limits">7</span>
     </div>
   </div>
 
-  <!-- מנה 2 -->
-  <div class="menu-item" data-id="chicken_quarters" data-price="60" data-name="כרעי עוף בתנור">
-    <span class="price">60 ₪</span>
-    <span class="dish-name">כרעי עוף בתנור (2 יחידות)</span>
-    <span class="dish-description">
-      כרעי עוף עסיסיות צלויות בתנור במרינדת שמן אבוקדו, שום ועשבי תיבול.<br>
-      <strong>ערכים משוערים:</strong> כ-480 קלוריות | כ-42 גרם חלבון (לא כולל תוספת).
-    </span>
-    <div class="selection-container">
-      <span class="select-label">בחר תוספת:</span>
-      <select class="side-dish">
-        <option value="אורז בסמטי">אורז בסמטי</option>
-        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
-        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
-      </select>
-      <div class="quantity-controls">
-        <button class="qty-btn minus">-</button>
-        <span class="qty-val">0</span>
-        <button class="qty-btn plus">+</button>
-      </div>
+  <div class="dynamic-list" id="main-dishes-container"></div>
+
+  <div class="slider-section">
+    <div class="slider-title">
+      <span>כמה מנות תוספת תרצה השבוע?</span>
+      <span class="count" id="side-count-display">0</span>
+    </div>
+    <div class="slider-container">
+      <span class="slider-limits">0</span>
+      <input type="range" id="side-slider" min="0" max="7" value="0">
+      <span class="slider-limits">7</span>
     </div>
   </div>
 
-  <!-- מנה 3 -->
-  <div class="menu-item" data-id="chicken_stirfry" data-price="65" data-name="חזה עוף מוקפץ">
-    <span class="price">65 ₪</span>
-    <span class="dish-name">חזה עוף מוקפץ עם ירקות</span>
-    <span class="dish-description">
-      רצועות חזה עוף (200 גרם) מוקפצות עם גזר, פלפלים, קישואים ובצל בשמן אבוקדו ותבלינים.<br>
-      <strong>ערכים משוערים:</strong> כ-410 קלוריות | כ-46 גרם חלבון (לא כולל תוספת).
-    </span>
-    <div class="selection-container">
-      <span class="select-label">בחר תוספת:</span>
-      <select class="side-dish">
-        <option value="אורז בסמטי">אורז בסמטי</option>
-        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
-        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
-      </select>
-      <div class="quantity-controls">
-        <button class="qty-btn minus">-</button>
-        <span class="qty-val">0</span>
-        <button class="qty-btn plus">+</button>
-      </div>
-    </div>
-  </div>
+  <div class="dynamic-list" id="side-dishes-container"></div>
 
-  <!-- תיבת מידע לוגיסטית -->
   <div class="info-box">
     ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
     🚚 משלוחים מרוכזים למשרדים באזור המרכז בימי ראשון בצהריים<br>
-    💡 האוכל מגיע בקופסאות אלומיניום ייעודיות לשמירה על טריות וחימום בריא
+    💡 האוכל מגיע בקופסאות אלומיניום ייעודיות לשמירה על טריות וחימום בריא בטוסטר או בתנור
   </div>
 
-  <!-- טופס פרטים -->
   <div class="order-form">
     <div class="form-title">פרטי משלוח ויצירת קשר</div>
     <div class="form-group">
@@ -333,7 +292,7 @@
       <input type="text" id="full-name" placeholder="ישראל ישראלי">
     </div>
     <div class="form-group">
-      <label for="address">כתובת משלוח ומשרד (כולל חברה וקומה):</label>
+      <label for="address">כתובת משלוח ומשרד (חברה, קומה, חדר):</label>
       <input type="text" id="address" placeholder="רוטשילד 42, תל אביב, חברת הייטק, קומה 5">
     </div>
     <div class="form-group">
@@ -342,65 +301,104 @@
     </div>
   </div>
 
-  <!-- תיבת סיכום ומניעת שליחה -->
   <div class="summary-box">
     סה"כ לתשלום: <span id="total-price">0</span> ₪
     <span id="warning" class="warning-msg">מינימום הזמנה למשלוח הוא 300 ₪</span>
   </div>
 
-  <!-- כפתור שליחה לוואטסאפ -->
   <button id="submit-order" class="btn" disabled>שליחת הזמנה ב-WhatsApp</button>
 
 </div>
 
 <script>
-  const orderData = {};
+  // רשימת המנות והמחירים
+  const mainOptions = [
+    { name: "קציצות בקר ברוטב עגבניות (45 ₪)", value: "קציצות בקר ברוטב עגבניות", price: 45 },
+    { name: "חזה עוף מוקפץ (45 ₪)", value: "חזה עוף מוקפץ", price: 45 },
+    { name: "כרעיים בתנור (45 ₪)", value: "כרעיים בתנור", price: 45 },
+    { name: "חזה עוף טיקה מסאלה (45 ₪)", value: "חזה עוף טיקה מסאלה", price: 45 },
+    { name: "אושפלו - בשר, אורז וירקות מבושלים יחד (60 ₪)", value: "אושפלו", price: 60 }
+  ];
 
-  // איתחול נתוני ההזמנה לכל מנה
-  document.querySelectorAll('.menu-item').forEach(item => {
-    const id = item.getAttribute('data-id');
-    orderData[id] = {
-      name: item.getAttribute('data-name'),
-      price: parseInt(item.getAttribute('data-price')),
-      qty: 0,
-      side: ''
-    };
+  const sideOptions = [
+    { name: "בטטות צלויות (20 ₪)", value: "בטטות צלויות", price: 20 },
+    { name: "תפוחי אדמה צלויים (20 ₪)", value: "תפוחי אדמה צלויים", price: 20 },
+    { name: "מג'דרה אורז מלא ועדשים (20 ₪)", value: "מג'דרה אורז מלא ועדשים", price: 20 },
+    { name: "שעועית ירוקה עם שום (20 ₪)", value: "שעועית ירוקה עם שום", price: 20 }
+  ];
 
-    const qtyVal = item.querySelector('.qty-val');
-    const sideSelect = item.querySelector('.side-dish');
+  const mainSlider = document.getElementById('main-slider');
+  const sideSlider = document.getElementById('side-slider');
+  const mainCountDisplay = document.getElementById('main-count-display');
+  const sideCountDisplay = document.getElementById('side-count-display');
+  const mainContainer = document.getElementById('main-dishes-container');
+  const sideContainer = document.getElementById('side-dishes-container');
 
-    // שמירת התוספת הנבחרת
-    orderData[id].side = sideSelect.value;
-    sideSelect.addEventListener('change', (e) => {
-      orderData[id].side = e.target.value;
-    });
+  // פונקציה לייצור תיבות הבחירה דינמית
+  function renderSelections(count, options, container, prefix) {
+    container.innerHTML = '';
+    for (let i = 1; i <= count; i++) {
+      const row = document.createElement('div');
+      row.className = 'selection-row';
+      
+      const label = document.createElement('label');
+      label.textContent = `${prefix} #${i}:`;
+      
+      const select = document.createElement('select');
+      select.className = `${prefix.toLowerCase()}-select`;
+      
+      options.forEach(opt => {
+        const optionElement = document.createElement('option');
+        optionElement.value = opt.value;
+        optionElement.textContent = opt.name;
+        optionElement.dataset.price = opt.price;
+        select.appendChild(optionElement);
+      });
 
-    // כפתור פלוס
-    item.querySelector('.plus').addEventListener('click', () => {
-      orderData[id].qty++;
-      qtyVal.textContent = orderData[id].qty;
-      updateTotal();
-    });
+      select.addEventListener('change', calculateTotal);
 
-    // כפתור מינוס
-    item.querySelector('.minus').addEventListener('click', () => {
-      if (orderData[id].qty > 0) {
-        orderData[id].qty--;
-        qtyVal.textContent = orderData[id].qty;
-        updateTotal();
-      }
-    });
+      row.appendChild(label);
+      row.appendChild(select);
+      container.appendChild(row);
+    }
+    calculateTotal();
+  }
+
+  // עדכון סליידר עיקריות
+  mainSlider.addEventListener('input', (e) => {
+    const val = parseInt(e.target.value);
+    mainCountDisplay.textContent = val;
+    renderSelections(val, mainOptions, mainContainer, 'עיקרית');
   });
 
-  // חישוב סכום כולל ועדכון כפתור השליחה
-  function updateTotal() {
+  // עדכון סליידר תוספות
+  sideSlider.addEventListener('input', (e) => {
+    const val = parseInt(e.target.value);
+    sideCountDisplay.textContent = val;
+    renderSelections(val, sideOptions, sideContainer, 'תוספת');
+  });
+
+  // חישוב סכום כולל
+  function calculateTotal() {
     let total = 0;
-    for (const key in orderData) {
-      total += orderData[key].qty * orderData[key].price;
-    }
+
+    // חישוב עיקריות נבחרות
+    const mainSelects = document.querySelectorAll('.עיקרית-select');
+    mainSelects.forEach(select => {
+      const selectedOption = select.options[select.selectedIndex];
+      total += parseInt(selectedOption.dataset.price);
+    });
+
+    // חישוב תוספות נבחרות
+    const sideSelects = document.querySelectorAll('.תוספת-select');
+    sideSelects.forEach(select => {
+      const selectedOption = select.options[select.selectedIndex];
+      total += parseInt(selectedOption.dataset.price);
+    });
 
     document.getElementById('total-price').textContent = total;
 
+    // הגבלת מינימום 300 ש"ח
     const submitBtn = document.getElementById('submit-order');
     const warning = document.getElementById('warning');
 
@@ -413,7 +411,7 @@
     }
   }
 
-  // שליחת ההזמנה לוואטסאפ
+  // שליחה לוואטסאפ
   document.getElementById('submit-order').addEventListener('click', () => {
     const name = document.getElementById('full-name').value.trim();
     const address = document.getElementById('address').value.trim();
@@ -424,29 +422,38 @@
       return;
     }
 
-    let itemsText = '';
-    let total = 0;
+    let mainItemsText = '';
+    const mainSelects = document.querySelectorAll('.עיקרית-select');
+    mainSelects.forEach((select, idx) => {
+      mainItemsText += `  ${idx + 1}. ${select.value}\n`;
+    });
 
-    for (const key in orderData) {
-      if (orderData[key].qty > 0) {
-        const itemTotal = orderData[key].qty * orderData[key].price;
-        itemsText += `• ${orderData[key].qty}x ${orderData[key].name} (+ תוספת: ${orderData[key].side})\n`;
-        total += itemTotal;
-      }
-    }
+    let sideItemsText = '';
+    const sideSelects = document.querySelectorAll('.תוספת-select');
+    sideSelects.forEach((select, idx) => {
+      sideItemsText += `  ${idx + 1}. ${select.value}\n`;
+    });
 
-    const message = `היי דורי, אני רוצה לבצע הזמנה שבועית!
+    const total = document.getElementById('total-price').textContent;
+
+    let message = `היי דורי, אני רוצה לבצע הזמנה שבועית!
 
 *פרטי משלוח:*
 👤 שם: ${name}
 📍 כתובת: ${address}
 📞 טלפון: ${phone}
 
-*הארוחות שבחרתי:*
-${itemsText}
-*סה"כ לתשלום:* ${total} ₪`;
+`;
 
-    // קידוד הטקסט לכתובת URL ושליחה לוואטסאפ שלך
+    if (mainSelects.length > 0) {
+      message += `*מנות עיקריות שהרכבתי:*\n${mainItemsText}\n`;
+    }
+    if (sideSelects.length > 0) {
+      message += `*תוספות שבחרתי:*\n${sideItemsText}\n`;
+    }
+
+    message += `*סה"כ לתשלום:* ${total} ₪`;
+
     const whatsappUrl = `https://wa.me/972504300624?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   });
