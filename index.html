@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* הגדרות כלליות - צבעים בהשראת התמונה */
     body {
-      font-family: 'Times New Roman', Times, serif; /* פונט קלאסי יותר */
+      font-family: 'Times New Roman', Times, serif;
       direction: rtl;
       margin: 0;
-      /* רקע בגוון קרם/אופ-וויט עדין כמו בתמונה */
       background: #fbf9f6; 
       color: #333;
     }
@@ -21,25 +19,23 @@
       margin: 30px auto;
       padding: 40px;
       background: white;
-      border: 1px solid #e0d8c3; /* מסגרת עדינה */
+      border: 1px solid #e0d8c3;
       border-radius: 5px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* צל עדין מאוד */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
-    /* כותרת ראשית - ממורכזת ובצבע חום-יין */
     h1 {
-      color: #8c2a32; /* צבע חום-יין מהתמונה */
+      color: #8c2a32;
       text-align: center;
       margin-bottom: 5px;
       font-size: 32px;
-      font-weight: normal; /* לא מודגש מדי, למראה קלאסי */
+      font-weight: normal;
     }
 
-    /* קו הפרדה מעוטר מתחת לכותרת - כמו בתמונה */
     .title-divider {
       width: 100px;
       height: 2px;
-      background: #c3a673; /* צבע זהב-זית מהתמונה */
+      background: #c3a673;
       margin: 0 auto 30px auto;
     }
 
@@ -48,55 +44,171 @@
       margin-bottom: 40px;
       color: #666;
       text-align: center;
+      line-height: 1.5;
     }
 
-    /* עיצוב המנות - נקי יותר, בלי ה'קופסאות' האפורות */
     .menu-item {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #eee; /* קו הפרדה עדין בין מנה למנה */
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
       position: relative;
     }
 
-    /* עיבוי שמות המנות - בקשה ספציפית */
     .dish-name {
       font-size: 20px;
-      font-weight: bold; /* מודגש */
-      color: #8c2a32; /* צבע חום-יין */
+      font-weight: bold;
+      color: #8c2a32;
       display: block;
       margin-bottom: 5px;
     }
 
     .dish-description {
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
       display: block;
-      margin-left: 80px; /* משאיר מקום למחיר */
+      margin-left: 100px;
+      margin-bottom: 12px;
+      line-height: 1.4;
     }
 
-    /* עיצוב המחיר - בצד שמאל ובצבע זהב */
     .price {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      color: #c3a673; /* צבע זהב-זית */
+      color: #c3a673;
       position: absolute;
       left: 0;
       top: 0;
     }
 
-    /* הערות ופרטים נוספים */
+    /* עיצוב התוספות */
+    .selection-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .select-label {
+      font-size: 14px;
+      color: #666;
+      font-weight: bold;
+    }
+
+    select {
+      font-family: inherit;
+      padding: 6px 12px;
+      border: 1px solid #e0d8c3;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* בקרי כמות פלוס ומינוס */
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: auto;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #e0d8c3;
+      background: #fbf9f6;
+      color: #8c2a32;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: #8c2a32;
+      color: white;
+      border-color: #8c2a32;
+    }
+
+    .qty-val {
+      font-size: 18px;
+      font-weight: bold;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* טופס פרטי לקוח */
+    .order-form {
+      background: #f9f5eb;
+      padding: 25px;
+      border-radius: 5px;
+      margin-top: 40px;
+      border: 1px solid #e0d8c3;
+    }
+
+    .form-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #8c2a32;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #e0d8c3;
+      border-radius: 4px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    /* סיכום הזמנה */
+    .summary-box {
+      text-align: center;
+      margin-top: 30px;
+      padding: 15px;
+      background: #f1ebd9;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .warning-msg {
+      color: #b02a37;
+      font-size: 14px;
+      margin-top: 8px;
+      display: block;
+    }
+
     .info-box {
       background: #f9f5eb;
       padding: 20px;
       border-radius: 5px;
-      margin-top: 40px;
+      margin-top: 30px;
       border: 1px solid #e0d8c3;
       color: #666;
       font-size: 15px;
       line-height: 1.6;
     }
 
-    /* כפתור הווטסאפ - נשאר ירוק ובולט, אבל בעיצוב נקי יותר */
     .btn {
       display: block;
       text-align: center;
@@ -107,12 +219,20 @@
       text-decoration: none;
       font-size: 19px;
       font-weight: bold;
-      margin-top: 30px;
+      margin-top: 20px;
       transition: background 0.3s;
+      border: none;
+      width: 100%;
+      cursor: pointer;
     }
 
     .btn:hover {
       background: #1ebe5d;
+    }
+
+    .btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -125,40 +245,212 @@
   <div class="title-divider"></div>
 
   <div class="subtitle">
-    ארוחות צהריים איכותיות, ללא שמני זרעים, מבושלות מחומרי גלם טריים – מגיע ישירות למשרד.
+    ארוחות צהריים אורגניות ונקיות משמני זרעים, המבושלות עם שמן אבוקדו בלבד. <br>
+    חומרי גלם טריים ואיכותיים בהזמנה שבועית - מגיע ישירות למשרד.
   </div>
 
-  <div class="menu-item">
-    <span class="price">60 ₪</span>
-    <span class="dish-name">עוף בתנור + אורז + ירקות</span>
-    <span class="dish-description">כרעי עוף עסיסיות בתיבול ביתי, מוגש עם אורז לבן קלאסי וירקות שורש קלויים.</span>
-  </div>
-
-  <div class="menu-item">
+  <!-- מנה 1 -->
+  <div class="menu-item" data-id="meatballs" data-price="65" data-name="קציצות בקר ברוטב עגבניות">
     <span class="price">65 ₪</span>
-    <span class="dish-name">קציצות בקר + פירה + סלט</span>
-    <span class="dish-description">קציצות בקר נימוחות ברוטב עגבניות עשיר, על מצע פירה תפוחי אדמה קטיפתי וסלט ירוק רענן.</span>
+    <span class="dish-name">קציצות בקר ברוטב עגבניות</span>
+    <span class="dish-description">
+      קציצות בקר נימוחות (400 גרם בשר נטו לפני בישול) ברוטב עגבניות עשיר. מבושל עם שמן אבוקדו.<br>
+      <strong>ערכים משוערים:</strong> כ-520 קלוריות | כ-35 גרם חלבון (לא כולל תוספת).
+    </span>
+    <div class="selection-container">
+      <span class="select-label">בחר תוספת:</span>
+      <select class="side-dish">
+        <option value="אורז בסמטי">אורז בסמטי</option>
+        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
+        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
+      </select>
+      <div class="quantity-controls">
+        <button class="qty-btn minus">-</button>
+        <span class="qty-val">0</span>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
   </div>
 
-  <div class="menu-item">
-    <span class="price">70 ₪</span>
-    <span class="dish-name">סלמון + קינואה + ירקות</span>
-    <span class="dish-description">פילה סלמון אפוי בעשבי תיבול, מוגש עם קינואה צבעונית ולקט ירקות ירוקים מאודים.</span>
+  <!-- מנה 2 -->
+  <div class="menu-item" data-id="chicken_quarters" data-price="60" data-name="כרעי עוף בתנור">
+    <span class="price">60 ₪</span>
+    <span class="dish-name">כרעי עוף בתנור (2 יחידות)</span>
+    <span class="dish-description">
+      כרעי עוף עסיסיות צלויות בתנור במרינדת שמן אבוקדו, שום ועשבי תיבול.<br>
+      <strong>ערכים משוערים:</strong> כ-480 קלוריות | כ-42 גרם חלבון (לא כולל תוספת).
+    </span>
+    <div class="selection-container">
+      <span class="select-label">בחר תוספת:</span>
+      <select class="side-dish">
+        <option value="אורז בסמטי">אורז בסמטי</option>
+        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
+        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
+      </select>
+      <div class="quantity-controls">
+        <button class="qty-btn minus">-</button>
+        <span class="qty-val">0</span>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
   </div>
 
+  <!-- מנה 3 -->
+  <div class="menu-item" data-id="chicken_stirfry" data-price="65" data-name="חזה עוף מוקפץ">
+    <span class="price">65 ₪</span>
+    <span class="dish-name">חזה עוף מוקפץ עם ירקות</span>
+    <span class="dish-description">
+      רצועות חזה עוף (200 גרם) מוקפצות עם גזר, פלפלים, קישואים ובצל בשמן אבוקדו ותבלינים.<br>
+      <strong>ערכים משוערים:</strong> כ-410 קלוריות | כ-46 גרם חלבון (לא כולל תוספת).
+    </span>
+    <div class="selection-container">
+      <span class="select-label">בחר תוספת:</span>
+      <select class="side-dish">
+        <option value="אורז בסמטי">אורז בסמטי</option>
+        <option value="בטטות מקורמלות">בטטות מקורמלות בתנור</option>
+        <option value="ירקות ירוקים מאודים">ירקות ירוקים מאודים</option>
+      </select>
+      <div class="quantity-controls">
+        <button class="qty-btn minus">-</button>
+        <span class="qty-val">0</span>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- תיבת מידע לוגיסטית -->
   <div class="info-box">
-    ⏰ <strong>הזמנות עד 10:00 בבוקר</strong><br>
-    🚚 משלוחים למשרדים באזור המרכז<br>
-    💡 מתאים לארוחת צהריים בריאה, מזינה ונוחה.
+    ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
+    🚚 משלוחים מרוכזים למשרדים באזור המרכז בימי ראשון בצהריים<br>
+    💡 האוכל מגיע בקופסאות אלומיניום ייעודיות לשמירה על טריות וחימום בריא
   </div>
 
-  <a class="btn"
-     href="https://wa.me/972504300624?text=היי%20אני%20רוצה%20להזמין%20אוכל%20למשרד"
-     target="_blank">
-    להזמנה מהירה ב-WhatsApp
-  </a>
+  <!-- טופס פרטים -->
+  <div class="order-form">
+    <div class="form-title">פרטי משלוח ויצירת קשר</div>
+    <div class="form-group">
+      <label for="full-name">שם מלא:</label>
+      <input type="text" id="full-name" placeholder="ישראל ישראלי">
+    </div>
+    <div class="form-group">
+      <label for="address">כתובת משלוח ומשרד (כולל חברה וקומה):</label>
+      <input type="text" id="address" placeholder="רוטשילד 42, תל אביב, חברת הייטק, קומה 5">
+    </div>
+    <div class="form-group">
+      <label for="phone">מספר טלפון:</label>
+      <input type="tel" id="phone" placeholder="050-1234567">
+    </div>
+  </div>
+
+  <!-- תיבת סיכום ומניעת שליחה -->
+  <div class="summary-box">
+    סה"כ לתשלום: <span id="total-price">0</span> ₪
+    <span id="warning" class="warning-msg">מינימום הזמנה למשלוח הוא 300 ₪</span>
+  </div>
+
+  <!-- כפתור שליחה לוואטסאפ -->
+  <button id="submit-order" class="btn" disabled>שליחת הזמנה ב-WhatsApp</button>
 
 </div>
+
+<script>
+  const orderData = {};
+
+  // איתחול נתוני ההזמנה לכל מנה
+  document.querySelectorAll('.menu-item').forEach(item => {
+    const id = item.getAttribute('data-id');
+    orderData[id] = {
+      name: item.getAttribute('data-name'),
+      price: parseInt(item.getAttribute('data-price')),
+      qty: 0,
+      side: ''
+    };
+
+    const qtyVal = item.querySelector('.qty-val');
+    const sideSelect = item.querySelector('.side-dish');
+
+    // שמירת התוספת הנבחרת
+    orderData[id].side = sideSelect.value;
+    sideSelect.addEventListener('change', (e) => {
+      orderData[id].side = e.target.value;
+    });
+
+    // כפתור פלוס
+    item.querySelector('.plus').addEventListener('click', () => {
+      orderData[id].qty++;
+      qtyVal.textContent = orderData[id].qty;
+      updateTotal();
+    });
+
+    // כפתור מינוס
+    item.querySelector('.minus').addEventListener('click', () => {
+      if (orderData[id].qty > 0) {
+        orderData[id].qty--;
+        qtyVal.textContent = orderData[id].qty;
+        updateTotal();
+      }
+    });
+  });
+
+  // חישוב סכום כולל ועדכון כפתור השליחה
+  function updateTotal() {
+    let total = 0;
+    for (const key in orderData) {
+      total += orderData[key].qty * orderData[key].price;
+    }
+
+    document.getElementById('total-price').textContent = total;
+
+    const submitBtn = document.getElementById('submit-order');
+    const warning = document.getElementById('warning');
+
+    if (total >= 300) {
+      submitBtn.disabled = false;
+      warning.style.display = 'none';
+    } else {
+      submitBtn.disabled = true;
+      warning.style.display = 'block';
+    }
+  }
+
+  // שליחת ההזמנה לוואטסאפ
+  document.getElementById('submit-order').addEventListener('click', () => {
+    const name = document.getElementById('full-name').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!name || !address || !phone) {
+      alert('נא למלא את כל פרטי המשלוח ויצירת קשר לפני השליחה.');
+      return;
+    }
+
+    let itemsText = '';
+    let total = 0;
+
+    for (const key in orderData) {
+      if (orderData[key].qty > 0) {
+        const itemTotal = orderData[key].qty * orderData[key].price;
+        itemsText += `• ${orderData[key].qty}x ${orderData[key].name} (+ תוספת: ${orderData[key].side})\n`;
+        total += itemTotal;
+      }
+    }
+
+    const message = `היי דורי, אני רוצה לבצע הזמנה שבועית!
+
+*פרטי משלוח:*
+👤 שם: ${name}
+📍 כתובת: ${address}
+📞 טלפון: ${phone}
+
+*הארוחות שבחרתי:*
+${itemsText}
+*סה"כ לתשלום:* ${total} ₪`;
+
+    // קידוד הטקסט לכתובת URL ושליחה לוואטסאפ שלך
+    const whatsappUrl = `https://wa.me/972504300624?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  });
+</script>
 
 </body>
 </html>
