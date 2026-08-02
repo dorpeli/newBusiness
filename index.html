@@ -445,11 +445,11 @@
 
     document.getElementById('total-price').textContent = total;
 
-    // הגבלת מינימום 300 ש"ח
+    // הגבלת מינימום 260 ש"ח
     const submitBtn = document.getElementById('submit-order');
     const warning = document.getElementById('warning');
 
-    if (total >= 300) {
+    if (total >= 260) {
       submitBtn.disabled = false;
       warning.style.display = 'none';
     } else {
