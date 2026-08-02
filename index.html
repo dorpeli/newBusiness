@@ -2,7 +2,7 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-  <title>אוכל ביתי בריא</title>
+  <title>אוכל ביתי בריא למשרדים</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -10,7 +10,7 @@
       font-family: 'Times New Roman', Times, serif;
       direction: rtl;
       margin: 0;
-      background: #fbf9f6; 
+      background: #eef5ed; 
       color: #333;
     }
 
@@ -19,13 +19,13 @@
       margin: 30px auto;
       padding: 40px;
       background: white;
-      border: 1px solid #e0d8c3;
-      border-radius: 5px;
+      border: 1px solid #d4e3d1;
+      border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
     h1 {
-      color: #8c2a32;
+      color: #2e5a36;
       text-align: center;
       margin-bottom: 5px;
       font-size: 32px;
@@ -35,22 +35,22 @@
     .title-divider {
       width: 100px;
       height: 2px;
-      background: #c3a673;
+      background: #78a379;
       margin: 0 auto 30px auto;
     }
 
     .subtitle {
       font-size: 18px;
       margin-bottom: 40px;
-      color: #666;
+      color: #555;
       text-align: center;
       line-height: 1.5;
     }
 
     /* עיצוב סליידרים */
     .slider-section {
-      background: #fdfcf9;
-      border: 1px solid #e9e3d5;
+      background: #f7faf6;
+      border: 1px solid #dce8db;
       padding: 20px;
       border-radius: 6px;
       margin-bottom: 25px;
@@ -59,7 +59,7 @@
     .slider-title {
       font-size: 18px;
       font-weight: bold;
-      color: #8c2a32;
+      color: #2e5a36;
       margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
@@ -67,7 +67,7 @@
     }
 
     .slider-title span.count {
-      color: #c3a673;
+      color: #4f8057;
       font-size: 22px;
     }
 
@@ -79,13 +79,13 @@
 
     input[type="range"] {
       flex: 1;
-      accent-color: #8c2a32;
+      accent-color: #2e5a36;
       cursor: pointer;
     }
 
     .slider-limits {
       font-size: 12px;
-      color: #999;
+      color: #777;
     }
 
     /* דינמיות - בחירת מנות */
@@ -99,14 +99,14 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 0;
-      border-bottom: 1px dashed #eee;
+      border-bottom: 1px dashed #d4e3d1;
       gap: 15px;
     }
 
     .selection-row label {
       font-size: 16px;
       font-weight: bold;
-      color: #555;
+      color: #444;
       min-width: 100px;
     }
 
@@ -114,7 +114,7 @@
       flex: 1;
       font-family: inherit;
       padding: 10px;
-      border: 1px solid #e0d8c3;
+      border: 1px solid #c5dac2;
       border-radius: 4px;
       background: #fff;
       font-size: 15px;
@@ -125,32 +125,32 @@
     /* מחירון קטן קבוע מעל */
     .price-guide {
       font-size: 15px;
-      color: #555;
-      background: #faf8f5;
+      color: #444;
+      background: #f4f8f3;
       padding: 15px;
       border-radius: 4px;
-      border: 1px solid #eee;
+      border: 1px solid #dce8db;
       margin-bottom: 30px;
       line-height: 1.6;
     }
 
     .price-guide strong {
-      color: #8c2a32;
+      color: #2e5a36;
     }
 
     /* טופס פרטי לקוח */
     .order-form {
-      background: #f9f5eb;
+      background: #f4f8f3;
       padding: 25px;
       border-radius: 5px;
       margin-top: 40px;
-      border: 1px solid #e0d8c3;
+      border: 1px solid #dce8db;
     }
 
     .form-title {
       font-size: 18px;
       font-weight: bold;
-      color: #8c2a32;
+      color: #2e5a36;
       margin-bottom: 15px;
     }
 
@@ -163,13 +163,13 @@
       font-size: 14px;
       font-weight: bold;
       margin-bottom: 5px;
-      color: #555;
+      color: #444;
     }
 
     .form-group input {
       width: 100%;
       padding: 10px;
-      border: 1px solid #e0d8c3;
+      border: 1px solid #c5dac2;
       border-radius: 4px;
       font-size: 15px;
       box-sizing: border-box;
@@ -180,10 +180,11 @@
       text-align: center;
       margin-top: 30px;
       padding: 15px;
-      background: #f1ebd9;
+      background: #e4efe2;
       border-radius: 5px;
       font-size: 18px;
       font-weight: bold;
+      color: #2e5a36;
     }
 
     .warning-msg {
@@ -194,14 +195,31 @@
     }
 
     .info-box {
-      background: #f9f5eb;
+      background: #f4f8f3;
       padding: 20px;
       border-radius: 5px;
       margin-top: 30px;
-      border: 1px solid #e0d8c3;
-      color: #666;
+      border: 1px solid #dce8db;
+      color: #555;
       font-size: 15px;
       line-height: 1.6;
+    }
+
+    /* חלק אישי - הסיפור של דורי */
+    .about-box {
+      background: #f0f6ef;
+      border: 1px solid #cbe0c8;
+      padding: 25px;
+      border-radius: 6px;
+      margin-top: 35px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .about-box h3 {
+      margin-top: 0;
+      color: #2e5a36;
+      font-size: 20px;
     }
 
     .btn {
@@ -214,7 +232,7 @@
       text-decoration: none;
       font-size: 19px;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 25px;
       transition: background 0.3s;
       border: none;
       width: 100%;
@@ -244,6 +262,7 @@
     רכיבים אורגניים, בישול בשמן אבוקדו בלבד וללא שמני זרעים מזיקים.
   </div>
 
+  <!-- מדריך מחירים מהיר -->
   <div class="price-guide">
     💡 <strong>מחירון הארוחות שלנו:</strong><br>
     • מנה עיקרית לבחירה (כ-400 גרם לפני בישול): <strong>45 ₪</strong><br>
@@ -251,6 +270,7 @@
     • מנת תוספת חמה לבחירה: <strong>20 ₪</strong>
   </div>
 
+  <!-- חלק 1: סליידר עיקריות -->
   <div class="slider-section">
     <div class="slider-title">
       <span>כמה מנות עיקריות תרצה השבוע?</span>
@@ -263,8 +283,10 @@
     </div>
   </div>
 
+  <!-- רשימת בחירת עיקריות דינמית -->
   <div class="dynamic-list" id="main-dishes-container"></div>
 
+  <!-- חלק 2: סליידר תוספות -->
   <div class="slider-section">
     <div class="slider-title">
       <span>כמה מנות תוספת תרצה השבוע?</span>
@@ -277,14 +299,17 @@
     </div>
   </div>
 
+  <!-- רשימת בחירת תוספות דינמית -->
   <div class="dynamic-list" id="side-dishes-container"></div>
 
+  <!-- תיבת מידע לוגיסטית -->
   <div class="info-box">
     ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
     🚚 משלוחים מרוכזים למשרדים באזור המרכז בימי ראשון בצהריים<br>
     💡 האוכל מגיע בקופסאות אלומיניום ייעודיות לשמירה על טריות וחימום בריא בטוסטר או בתנור
   </div>
 
+  <!-- טופס פרטים -->
   <div class="order-form">
     <div class="form-title">פרטי משלוח ויצירת קשר</div>
     <div class="form-group">
@@ -301,18 +326,32 @@
     </div>
   </div>
 
+  <!-- תיבת סיכום ומניעת שליחה -->
   <div class="summary-box">
     סה"כ לתשלום: <span id="total-price">0</span> ₪
     <span id="warning" class="warning-msg">מינימום הזמנה למשלוח הוא 300 ₪</span>
   </div>
 
+  <!-- חלק אישי: הסיפור של דורי -->
+  <div class="about-box">
+    <h3>👨‍🍳 היי, אני דורי</h3>
+    <p>
+      לקחתי על עצמי משימה להנגיש אוכל אמיתי, בריא ומזין לכל מי שרוצה לפגוש את הטבע דרך הצלחת ולייעל את האנרגיה שלו במהלך היום.
+    </p>
+    <p>
+      בעיניי, אוכל הוא הרבה מעבר לדלק; המזון ממש הופך לחלק מאיתנו. ככל שנזין את עצמנו בצורה נקייה יותר – באוכל פשוט, טעים, וללא שום תוספים או שמני זרעים – כך נחיה חיים שלווים, חזקים ומספקים יותר. אני מבשל את הארוחות האלה בדיוק בסטנדרט שאני דורש מעצמי, ומזמין אתכם לאכול נקי.
+    </p>
+  </div>
+
+  <!-- כפתור שליחה לוואטסאפ -->
   <button id="submit-order" class="btn" disabled>שליחת הזמנה ב-WhatsApp</button>
 
 </div>
 
 <script>
-  // רשימת המנות והמחירים
+  // רשימת המנות והמחירים עם ברירת מחדל של בחירה
   const mainOptions = [
+    { name: "-- בחר מנה עיקרית --", value: "", price: 0 },
     { name: "קציצות בקר ברוטב עגבניות (45 ₪)", value: "קציצות בקר ברוטב עגבניות", price: 45 },
     { name: "חזה עוף מוקפץ (45 ₪)", value: "חזה עוף מוקפץ", price: 45 },
     { name: "כרעיים בתנור (45 ₪)", value: "כרעיים בתנור", price: 45 },
@@ -321,6 +360,7 @@
   ];
 
   const sideOptions = [
+    { name: "-- בחר תוספת --", value: "", price: 0 },
     { name: "בטטות צלויות (20 ₪)", value: "בטטות צלויות", price: 20 },
     { name: "תפוחי אדמה צלויים (20 ₪)", value: "תפוחי אדמה צלויים", price: 20 },
     { name: "מג'דרה אורז מלא ועדשים (20 ₪)", value: "מג'דרה אורז מלא ועדשים", price: 20 },
@@ -336,6 +376,9 @@
 
   // פונקציה לייצור תיבות הבחירה דינמית
   function renderSelections(count, options, container, prefix) {
+    const existingSelects = container.querySelectorAll('select');
+    const savedValues = Array.from(existingSelects).map(s => s.value);
+
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
       const row = document.createElement('div');
@@ -354,6 +397,10 @@
         optionElement.dataset.price = opt.price;
         select.appendChild(optionElement);
       });
+
+      if (savedValues[i - 1]) {
+        select.value = savedValues[i - 1];
+      }
 
       select.addEventListener('change', calculateTotal);
 
@@ -386,14 +433,14 @@
     const mainSelects = document.querySelectorAll('.עיקרית-select');
     mainSelects.forEach(select => {
       const selectedOption = select.options[select.selectedIndex];
-      total += parseInt(selectedOption.dataset.price);
+      total += parseInt(selectedOption.dataset.price || 0);
     });
 
     // חישוב תוספות נבחרות
     const sideSelects = document.querySelectorAll('.תוספת-select');
     sideSelects.forEach(select => {
       const selectedOption = select.options[select.selectedIndex];
-      total += parseInt(selectedOption.dataset.price);
+      total += parseInt(selectedOption.dataset.price || 0);
     });
 
     document.getElementById('total-price').textContent = total;
@@ -422,17 +469,25 @@
       return;
     }
 
+    let unselected = false;
     let mainItemsText = '';
     const mainSelects = document.querySelectorAll('.עיקרית-select');
     mainSelects.forEach((select, idx) => {
+      if (!select.value) unselected = true;
       mainItemsText += `  ${idx + 1}. ${select.value}\n`;
     });
 
     let sideItemsText = '';
     const sideSelects = document.querySelectorAll('.תוספת-select');
     sideSelects.forEach((select, idx) => {
+      if (!select.value) unselected = true;
       sideItemsText += `  ${idx + 1}. ${select.value}\n`;
     });
+
+    if (unselected) {
+      alert('נא לבחור מנה בכל אחד מהשדות לפני שליחת ההזמנה.');
+      return;
+    }
 
     const total = document.getElementById('total-price').textContent;
 
