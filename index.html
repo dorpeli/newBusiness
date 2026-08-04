@@ -2,48 +2,135 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-  <title>אוכל ביתי בריא</title>
+  <title>מזון אמיתי | אוכל ביתי בריא</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: 'Heebo', Arial, sans-serif;
       direction: rtl;
       margin: 0;
-      background: #eef5ed; 
-      color: #333;
+      background: linear-gradient(180deg, #f4f9f2 0%, #eaf3e7 100%);
+      color: #2b2b2b;
+      line-height: 1.6;
     }
 
     .container {
       max-width: 700px;
-      margin: 30px auto;
-      padding: 40px;
-      background: white;
-      border: 1px solid #d4e3d1;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin: 40px auto;
+      padding: 45px 40px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(46, 90, 54, 0.08);
+    }
+
+    /* כותרת עליונה */
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eaf5e8;
+      color: #2e5a36;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
     }
 
     h1 {
-      color: #2e5a36;
+      color: #204d27;
       text-align: center;
-      margin-bottom: 5px;
-      font-size: 32px;
-      font-weight: normal;
+      margin: 0 0 8px 0;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
     .title-divider {
-      width: 100px;
-      height: 2px;
+      width: 70px;
+      height: 4px;
       background: #78a379;
-      margin: 0 auto 30px auto;
+      border-radius: 4px;
+      margin: 14px auto 26px auto;
+    }
+
+    .header-center {
+      text-align: center;
     }
 
     .subtitle {
-      font-size: 18px;
-      margin-bottom: 40px;
+      font-size: 17px;
+      margin-bottom: 30px;
       color: #555;
       text-align: center;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* בלוק תגי אמון */
+    .trust-badges {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f7faf6;
+      border: 1px solid #dce8db;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #2e5a36;
+    }
+
+    .trust-badge .emoji {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .trust-badges {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .shipping-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #204d27;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 34px;
+      text-align: center;
+    }
+
+    .shipping-badge .emoji {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .ingredient-note {
+      font-size: 12.5px;
+      color: #6b7d6c;
+      font-weight: 400;
+      padding: 6px 2px 0 2px;
       line-height: 1.5;
     }
 
@@ -51,24 +138,32 @@
     .slider-section {
       background: #f7faf6;
       border: 1px solid #dce8db;
-      padding: 20px;
-      border-radius: 6px;
-      margin-bottom: 25px;
+      padding: 22px;
+      border-radius: 14px;
+      margin-bottom: 20px;
     }
 
     .slider-title {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 17px;
+      font-weight: 700;
       color: #2e5a36;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .slider-title span.count {
-      color: #4f8057;
-      font-size: 22px;
+      color: #ffffff;
+      background: #4f8057;
+      font-size: 16px;
+      font-weight: 700;
+      min-width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .slider-container {
@@ -81,17 +176,19 @@
       flex: 1;
       accent-color: #2e5a36;
       cursor: pointer;
+      height: 6px;
     }
 
     .slider-limits {
       font-size: 12px;
-      color: #777;
+      color: #888;
+      font-weight: 600;
     }
 
     /* דינמיות - בחירת מנות */
     .dynamic-list {
-      margin-top: 20px;
-      margin-bottom: 30px;
+      margin-top: 14px;
+      margin-bottom: 26px;
     }
 
     .selection-row {
@@ -104,34 +201,39 @@
     }
 
     .selection-row label {
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 700;
       color: #444;
-      min-width: 100px;
+      min-width: 90px;
     }
 
     select {
       flex: 1;
       font-family: inherit;
-      padding: 10px;
+      padding: 11px 12px;
       border: 1px solid #c5dac2;
-      border-radius: 4px;
+      border-radius: 8px;
       background: #fff;
-      font-size: 15px;
+      font-size: 14.5px;
       outline: none;
       cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    select:focus {
+      border-color: #4f8057;
     }
 
     /* מחירון קטן קבוע מעל */
     .price-guide {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #444;
       background: #f4f8f3;
-      padding: 15px;
-      border-radius: 4px;
+      padding: 18px 20px;
+      border-radius: 12px;
       border: 1px solid #dce8db;
-      margin-bottom: 30px;
-      line-height: 1.6;
+      margin-bottom: 28px;
+      line-height: 1.8;
     }
 
     .price-guide strong {
@@ -141,17 +243,17 @@
     /* טופס פרטי לקוח */
     .order-form {
       background: #f4f8f3;
-      padding: 25px;
-      border-radius: 5px;
-      margin-top: 40px;
+      padding: 26px;
+      border-radius: 14px;
+      margin-top: 36px;
       border: 1px solid #dce8db;
     }
 
     .form-title {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
       color: #2e5a36;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .form-group {
@@ -160,59 +262,67 @@
 
     .form-group label {
       display: block;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
       color: #444;
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px;
+      padding: 11px 12px;
       border: 1px solid #c5dac2;
-      border-radius: 4px;
-      font-size: 15px;
+      border-radius: 8px;
+      font-size: 14.5px;
       box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #4f8057;
+      outline: none;
     }
 
     /* סיכום הזמנה */
     .summary-box {
       text-align: center;
-      margin-top: 30px;
-      padding: 15px;
+      margin-top: 28px;
+      padding: 18px;
       background: #e4efe2;
-      border-radius: 5px;
-      font-size: 18px;
-      font-weight: bold;
+      border-radius: 12px;
+      font-size: 19px;
+      font-weight: 800;
       color: #2e5a36;
     }
 
     .warning-msg {
       color: #b02a37;
-      font-size: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
       margin-top: 8px;
       display: block;
     }
 
     .info-box {
       background: #f4f8f3;
-      padding: 20px;
-      border-radius: 5px;
-      margin-top: 30px;
+      padding: 20px 22px;
+      border-radius: 12px;
+      margin-top: 28px;
       border: 1px solid #dce8db;
       color: #555;
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14.5px;
+      line-height: 1.8;
     }
 
     /* חלק אישי - הסיפור של דורי */
     .about-box {
       background: #f0f6ef;
       border: 1px solid #cbe0c8;
-      padding: 25px;
-      border-radius: 6px;
-      margin-top: 35px;
-      line-height: 1.7;
+      padding: 28px;
+      border-radius: 14px;
+      margin-top: 36px;
+      line-height: 1.75;
       color: #333;
     }
 
@@ -220,6 +330,11 @@
       margin-top: 0;
       color: #2e5a36;
       font-size: 20px;
+      font-weight: 700;
+    }
+
+    .about-box p {
+      font-size: 15px;
     }
 
     .btn {
@@ -227,13 +342,13 @@
       text-align: center;
       background: #25D366;
       color: white;
-      padding: 18px;
-      border-radius: 5px;
+      padding: 19px;
+      border-radius: 12px;
       text-decoration: none;
       font-size: 19px;
-      font-weight: bold;
-      margin-top: 25px;
-      transition: background 0.3s;
+      font-weight: 700;
+      margin-top: 26px;
+      transition: background 0.3s, transform 0.15s;
       border: none;
       width: 100%;
       cursor: pointer;
@@ -241,11 +356,13 @@
 
     .btn:hover {
       background: #1ebe5d;
+      transform: translateY(-1px);
     }
 
     .btn:disabled {
       background: #cccccc;
       cursor: not-allowed;
+      transform: none;
     }
   </style>
 </head>
@@ -254,12 +371,27 @@
 
 <div class="container">
 
-  <h1>אוכל ביתי בריא</h1>
-  <div class="title-divider"></div>
+  <div class="header-center">
+    <span class="header-badge">🥗 אוכל ביתי מוכן מדי שבוע</span>
+    <h1>מזון אמיתי</h1>
+    <div class="title-divider"></div>
+  </div>
 
   <div class="subtitle">
     בנה את התפריט השבועי שלך בדיוק כמו שאתה אוהב.<br>
     רכיבים אורגניים, בישול בשמן טבעיים בלבד וללא שמני זרעים
+  </div>
+
+  <!-- בלוק תגי אמון -->
+  <div class="trust-badges">
+    <div class="trust-badge"><span class="emoji">🌿</span> 100% אורגני</div>
+    <div class="trust-badge"><span class="emoji">🚫</span> נקי משמני זרעים</div>
+    <div class="trust-badge"><span class="emoji">🥩</span> בשר ועוף איכותיים</div>
+    <div class="trust-badge"><span class="emoji">✋</span> רכיבים טבעיים בלבד</div>
+  </div>
+
+  <div class="shipping-badge">
+    <span class="emoji">🚚</span> משלוח חינם על כל הזמנה (מינימום הזמנה: 260 ₪)
   </div>
 
   <!-- מדריך מחירים מהיר -->
@@ -306,8 +438,8 @@
   <div class="info-box">
     ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
     🚚 משלוחים מרוכזים לאזור המרכז בימי ראשון בין השעות 10:00-13:00<br>
-    🎯 המנוי מוגבל למספר לקוחות מוגדר בחודש לשמירה על איכות מקסימלית
-    💡 האוכל מגיע בקופסאות סיבי קני סוכר אקולגיות לשמירה על טריות המיועדות לתנור ומיקרוגל
+    🎯 המנוי מוגבל למספר לקוחות מוגדר בחודש לשמירה על איכות מקסימלית<br>
+    💡 האוכל מגיע בקופסאות סיבי קני סוכר אקולוגיות המיועדות לתנור ומיקרוגל
   </div>
 
   <!-- טופס פרטים -->
@@ -371,12 +503,31 @@
     { name: "שעועית ירוקה עם שום (20 ₪)", value: "שעועית ירוקה עם שום", price: 20 }
   ];
 
+  // רשימת רכיבים בסיסית לכל מנה (לעדכון בעתיד לפי המתכונים המדויקים)
+  const ingredientsMap = {
+    "קציצות בקר ברוטב עגבניות": "בקר טחון אורגני, עגבניות, בצל, שום, שמן זית, תבלינים טבעיים",
+    "חזה עוף מוקפץ": "חזה עוף אורגני, פלפלים צבעוניים, בצל, שמן זית, תבלינים טבעיים",
+    "כרעיים בתנור": "כרעי עוף אורגניות, שמן זית, שום, רוזמרין, לימון",
+    "חזה עוף טיקה מסאלה": "חזה עוף אורגני, רוטב עגבניות, יוגורט, תבלינים הודיים, שמן זית",
+    "אושפלו": "בשר בקר אורגני, אורז מלא, גזר, שום, בצל, שמן זית, תבלינים",
+    "בטטות צלויות": "בטטה, שמן זית, תבלינים טבעיים",
+    "תפוחי אדמה צלויים": "תפוחי אדמה, שמן זית, פפריקה, מלח ים",
+    "מג'דרה אורז מלא ועדשים": "אורז מלא, עדשים חומות, בצל מטוגן בשמן זית",
+    "שעועית ירוקה עם שום": "שעועית ירוקה טרייה, שום, שמן זית"
+  };
+
   const mainSlider = document.getElementById('main-slider');
   const sideSlider = document.getElementById('side-slider');
   const mainCountDisplay = document.getElementById('main-count-display');
   const sideCountDisplay = document.getElementById('side-count-display');
   const mainContainer = document.getElementById('main-dishes-container');
   const sideContainer = document.getElementById('side-dishes-container');
+
+  // עדכון שורת הרכיבים מתחת לבחירה
+  function updateIngredientNote(select, note) {
+    const ingredients = ingredientsMap[select.value];
+    note.textContent = ingredients ? `רכיבים: ${ingredients}` : '';
+  }
 
   // פונקציה לייצור תיבות הבחירה דינמית
   function renderSelections(count, options, container, prefix) {
@@ -385,15 +536,17 @@
 
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
+      const wrapper = document.createElement('div');
+
       const row = document.createElement('div');
       row.className = 'selection-row';
-      
+
       const label = document.createElement('label');
       label.textContent = `${prefix} #${i}:`;
-      
+
       const select = document.createElement('select');
       select.className = `${prefix.toLowerCase()}-select`;
-      
+
       options.forEach(opt => {
         const optionElement = document.createElement('option');
         optionElement.value = opt.value;
@@ -406,11 +559,20 @@
         select.value = savedValues[i - 1];
       }
 
-      select.addEventListener('change', calculateTotal);
+      const note = document.createElement('div');
+      note.className = 'ingredient-note';
+      updateIngredientNote(select, note);
+
+      select.addEventListener('change', () => {
+        updateIngredientNote(select, note);
+        calculateTotal();
+      });
 
       row.appendChild(label);
       row.appendChild(select);
-      container.appendChild(row);
+      wrapper.appendChild(row);
+      wrapper.appendChild(note);
+      container.appendChild(wrapper);
     }
     calculateTotal();
   }
@@ -514,7 +676,7 @@
     message += `*סה"כ לתשלום:* ${total} ₪`;
 
     const whatsappUrl = `https://wa.me/972504300624?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    window.location.href = whatsappUrl;
   });
 </script>
 
