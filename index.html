@@ -74,6 +74,62 @@
       font-weight: 400;
     }
 
+    /* באנר הנחה להזמנה ראשונה */
+    .discount-banner {
+      position: relative;
+      background: linear-gradient(135deg, #ff8a4c 0%, #ff6a3d 100%);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(255, 106, 61, 0.28);
+      overflow: hidden;
+    }
+
+    .discount-banner::before,
+    .discount-banner::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      background: #eaf3e7;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .discount-banner::before {
+      right: -11px;
+    }
+
+    .discount-banner::after {
+      left: -11px;
+    }
+
+    .discount-percent {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffffff;
+      display: block;
+      letter-spacing: -0.5px;
+    }
+
+    .discount-text {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #fff3ea;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .discount-sub {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #ffe4d6;
+      display: block;
+      margin-top: 6px;
+    }
+
     /* בלוק תגי אמון */
     .trust-badges {
       display: grid;
@@ -375,6 +431,13 @@
     <span class="header-badge">🥗 אוכל ביתי מוכן מדי שבוע</span>
     <h1>מזון אמיתי</h1>
     <div class="title-divider"></div>
+  </div>
+
+  <!-- באנר הנחה להזמנה ראשונה -->
+  <div class="discount-banner">
+    <span class="discount-percent">15% הנחה 🎉</span>
+    <span class="discount-text">על ההזמנה הראשונה שלך</span>
+    <span class="discount-sub">ציינו בהודעת הוואטסאפ "הזמנה ראשונה" ונדאג להנחה</span>
   </div>
 
   <div class="subtitle">
