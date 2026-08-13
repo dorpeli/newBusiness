@@ -72,7 +72,7 @@
     /* טאבים */
     .tabs {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 32px;
       background: #f0f6ef;
       padding: 6px;
@@ -81,16 +81,17 @@
 
     .tab-btn {
       flex: 1;
-      padding: 13px 10px;
+      padding: 12px 6px;
       border: none;
       border-radius: 10px;
       background: transparent;
       color: #4a6b4e;
       font-family: inherit;
-      font-size: 15.5px;
+      font-size: 14.5px;
       font-weight: 700;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      text-align: center;
     }
 
     .tab-btn.active {
@@ -173,6 +174,7 @@
 
     @media (max-width: 480px) {
       .trust-badges { grid-template-columns: 1fr; }
+      .container { padding: 25px 20px; }
     }
 
     .shipping-badge {
@@ -191,6 +193,87 @@
     }
 
     .shipping-badge .emoji { font-size: 20px; flex-shrink: 0; }
+
+    /* עיצוב כרטיסיות תפריט (טאב תמונות) */
+    .menu-category-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #2e5a36;
+      margin: 25px 0 15px 0;
+      border-bottom: 2px solid #e2efe0;
+      padding-bottom: 6px;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border: 1px solid #dce8db;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.2s;
+    }
+
+    .menu-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-card-body {
+      padding: 18px 20px;
+    }
+
+    .menu-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .menu-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #204d27;
+      margin: 0;
+    }
+
+    .menu-card-price {
+      font-size: 17px;
+      font-weight: 800;
+      color: #ff6a3d;
+      background: #fff3ea;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .menu-card-ingredients {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    .menu-card-ingredients strong {
+      color: #2e5a36;
+    }
+
+    .goto-order-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: #2e5a36;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 12px;
+      cursor: pointer;
+      border: none;
+      font-size: 15px;
+    }
 
     .ingredient-note {
       font-size: 12.5px;
@@ -453,14 +536,163 @@
     <div class="title-divider"></div>
   </div>
 
-  <!-- ניווט טאבים -->
+  <!-- ניווט 3 טאבים -->
   <div class="tabs">
-    <button class="tab-btn active" id="btn-order" onclick="switchTab('order')">בניית הזמנה</button>
-    <button class="tab-btn" id="btn-about" onclick="switchTab('about')">מי אנחנו</button>
+    <button class="tab-btn active" id="btn-menu" onclick="switchTab('menu')">תפריט ותמונות 📸</button>
+    <button class="tab-btn" id="btn-order" onclick="switchTab('order')">בניית הזמנה 🛒</button>
+    <button class="tab-btn" id="btn-about" onclick="switchTab('about')">מי אנחנו 🌿</button>
   </div>
 
-  <!-- ===== טאב 1: בניית הזמנה ===== -->
-  <div id="tab-order" class="tab-content active">
+  <!-- ===== טאב 1: תפריט ותמונות ===== -->
+  <div id="tab-menu" class="tab-content active">
+
+    <div class="subtitle">
+      כל המנות מבושלות מרכיבים אורגניים בלבד, בשמן אבוקדו ונקיות לחלוטין משמני זרעים או תוספים תעשייתיים.
+    </div>
+
+    <div class="menu-category-title">🍲 מנות עיקריות</div>
+
+    <!-- כרטיסיה 1 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=700&q=80" alt="קציצות בקר" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">קציצות בקר ברוטב עגבניות</h4>
+          <span class="menu-card-price">45 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> בקר טחון אורגני, עגבניות תמר מושות, בצל, תפוח אדמה, פטרוזיליה, כוסברה, שום, רסק עגבניות מרוכז, שמן אבוקדו, כמון, בהרט, פפריקה מתוקה, מלח ים, פלפל שחור.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- כרטיסיה 2 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=80" alt="חזה עוף מוקפץ" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">חזה עוף מוקפץ</h4>
+          <span class="menu-card-price">45 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> חזה עוף אורגני, פלפל אדום, פלפל צהוב, בצל ירוק, בצל סגול, שום, ג'ינג'ר טרי, שמן אבוקדו, רוטב סויה תסיסה טבעית, סילאן טבעי, שומשום מלא.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- כרטיסיה 3 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=700&q=80" alt="כרעיים בתנור" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">כרעיים בתנור</h4>
+          <span class="menu-card-price">45 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> כרעי עוף אורגניות, שמן אבוקדו, שום כתוש, מיץ לימון טרי, ענפי רוזמרין, טימין, פפריקה מתוקה, אורגנו יבש, מלח ים, פלפל שחור גרוס.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- כרטיסיה 4 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=700&q=80" alt="חזה עוף טיקה מסאלה" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">חזה עוף טיקה מסאלה</h4>
+          <span class="menu-card-price">45 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> חזה עוף אורגני, עגבניות מרוסקות, קרם קוקוס טבעי, בצל, שום, ג'ינג'ר טרי, שמן אבוקדו, גראם מסאלה, כורכום, כמון, כוסברה טרייה, מלח ים.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- כרטיסיה 5 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=700&q=80" alt="אושפלו" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">אושפלו (בשר, אורז וירקות)</h4>
+          <span class="menu-card-price">60 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> בשר בקר אורגני, אורז מלא, גזר חתוך לרצועות, בצל, ראשי שום שלמים, שמן אבוקדו, כמון פרסי, גרגירי כוסברה, מלח ים, פלפל שחור.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <div class="menu-category-title">🥗 תוספות</div>
+
+    <!-- תוספת 1 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1592417817098-8f3d6ef23a81?auto=format&fit=crop&w=700&q=80" alt="בטטות צלויות" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">בטטות צלויות</h4>
+          <span class="menu-card-price">20 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> בטטה, שמן אבוקדו, טימין טרי, פפריקה מתוקה, מעט סילאן טבעי, מלח אטלנטי, פלפל שחור גרוס.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- תוספת 2 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=80" alt="תפוחי אדמה צלויים" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">תפוחי אדמה צלויים</h4>
+          <span class="menu-card-price">20 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> תפוחי אדמה, שמן אבוקדו, שום גבישי, פפריקה מתוקה, רוזמרין, מלח אטלנטי, פלפל שחור גרוס.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- תוספת 3 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1536304993881-ff6e90fc0b65?auto=format&fit=crop&w=700&q=80" alt="מג'דרה אורז מלא ועדשים" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">מג'דרה אורז מלא ועדשים</h4>
+          <span class="menu-card-price">20 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> אורז מלא, עדשים חומות (ירוקות), בצל מוזהב בשמן אבוקדו, כמון, בהרט, מלח ים, פלפל שחור.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+    <!-- תוספת 4 -->
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=700&q=80" alt="שעועית ירוקה עם שום" class="menu-card-img">
+      <div class="menu-card-body">
+        <div class="menu-card-header">
+          <h4 class="menu-card-title">שעועית ירוקה עם שום</h4>
+          <span class="menu-card-price">20 ₪</span>
+        </div>
+        <div class="menu-card-ingredients">
+          <strong>רכיבים:</strong> שעועית ירוקה עדינה, שום פרוס, שמן אבוקדו, מיץ לימון טרי, שומשום קלוי, מלח אטלנטי.
+        </div>
+        <button class="goto-order-btn" onclick="switchTab('order')">להזמנת מנה זו 👈</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== טאב 2: בניית הזמנה ===== -->
+  <div id="tab-order" class="tab-content">
 
     <div class="discount-banner">
       <span class="discount-percent">15% הנחה 🎉</span>
@@ -476,7 +708,7 @@
     <div class="trust-badges">
       <div class="trust-badge"><span class="emoji">🌿</span> 100% אורגני</div>
       <div class="trust-badge"><span class="emoji">🚫</span> נקי משמני זרעים</div>
-      <div class="trust-badge"><span class="emoji">🫘</span> כל הקטניות מושרות מראש</div>
+      <div class="trust-badge"><span class="emoji">🥩</span> בשר ועוף איכותיים</div>
       <div class="trust-badge"><span class="emoji">✋</span> רכיבים טבעיים בלבד</div>
     </div>
 
@@ -529,7 +761,7 @@
       <!-- שדה עיר עם חיפוש ואוטוקומפליט -->
       <div class="form-group">
         <label for="city-input">עיר / יישוב:</label>
-        <input type="text" id="city-input" autocomplete="off">
+        <input type="text" id="city-input" placeholder="הקלד עיר (למשל: תל אביב, מודיעין, רעננה...)" autocomplete="off">
         <div id="autocomplete-list" class="autocomplete-items"></div>
         <div id="city-status" class="city-status"></div>
       </div>
@@ -555,7 +787,7 @@
 
   </div>
 
-  <!-- ===== טאב 2: מי אנחנו ===== -->
+  <!-- ===== טאב 3: מי אנחנו ===== -->
   <div id="tab-about" class="tab-content">
 
     <div class="about-box">
@@ -599,10 +831,15 @@
 
 <script>
   function switchTab(tab) {
+    document.getElementById('tab-menu').classList.toggle('active', tab === 'menu');
     document.getElementById('tab-order').classList.toggle('active', tab === 'order');
     document.getElementById('tab-about').classList.toggle('active', tab === 'about');
+    
+    document.getElementById('btn-menu').classList.toggle('active', tab === 'menu');
     document.getElementById('btn-order').classList.toggle('active', tab === 'order');
     document.getElementById('btn-about').classList.toggle('active', tab === 'about');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   const MIN_ORDER = 145;
