@@ -1,3 +1,18 @@
+הנה הקוד הראשי המעודכן שלך, כולל כל הפיצ'רים שביקשת:
+
+1. **הפרדת שדה עיר ושדה כתובת.**
+2. **מנגנון חיפוש חכם (Autocomplete) בעת הקלדת העיר:** ברגע שמקלידים, מופיעה רשימה נגללת של הערים, המושבים והקיבוצים בטווח שלך.
+3. **הודעת אישור דינמית:**
+* **אם העיר בטווח:** מופיעה הודעה ירוקה *"מעולה! אנחנו מגיעים אלייך 🚚✨"*.
+* **אם העיר מחוץ לטווח:** מופיעה הודעה כתומה *"כרגע אנחנו עדיין לא מגיעים לאזור הזה..."*.
+
+
+4. **עדכון הודעת הוואטסאפ:** העיר והכתובת נשלחות בצורה מסודרת ונפרדת.
+5. **עדכון הטאב "מי אנחנו":** הכנסתי לשם את כל רשימת הערים והמועצות האזוריות שסיכמנו קודם.
+
+תוכל להעתיק את הקוד ולהדביק אותו ישירות ב-`index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="he">
 <head>
@@ -8,9 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Heebo', Arial, sans-serif;
@@ -30,7 +43,6 @@
       box-shadow: 0 10px 40px rgba(46, 90, 54, 0.08);
     }
 
-    /* כותרת עליונה */
     .header-badge {
       display: inline-flex;
       align-items: center;
@@ -61,9 +73,7 @@
       margin: 14px auto 26px auto;
     }
 
-    .header-center {
-      text-align: center;
-    }
+    .header-center { text-align: center; }
 
     .subtitle {
       font-size: 17px;
@@ -74,7 +84,40 @@
       font-weight: 400;
     }
 
-    /* באנר הנחה להזמנה ראשונה */
+    /* טאבים */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      background: #f0f6ef;
+      padding: 6px;
+      border-radius: 14px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 13px 10px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: #4a6b4e;
+      font-family: inherit;
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #2e5a36;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(46, 90, 54, 0.25);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* באנר הנחה */
     .discount-banner {
       position: relative;
       background: linear-gradient(135deg, #ff8a4c 0%, #ff6a3d 100%);
@@ -86,8 +129,7 @@
       overflow: hidden;
     }
 
-    .discount-banner::before,
-    .discount-banner::after {
+    .discount-banner::before, .discount-banner::after {
       content: "";
       position: absolute;
       top: 50%;
@@ -97,14 +139,8 @@
       border-radius: 50%;
       transform: translateY(-50%);
     }
-
-    .discount-banner::before {
-      right: -11px;
-    }
-
-    .discount-banner::after {
-      left: -11px;
-    }
+    .discount-banner::before { right: -11px; }
+    .discount-banner::after { left: -11px; }
 
     .discount-percent {
       font-size: 30px;
@@ -113,7 +149,6 @@
       display: block;
       letter-spacing: -0.5px;
     }
-
     .discount-text {
       font-size: 15.5px;
       font-weight: 700;
@@ -121,7 +156,6 @@
       display: block;
       margin-top: 2px;
     }
-
     .discount-sub {
       font-size: 12.5px;
       font-weight: 500;
@@ -130,7 +164,6 @@
       margin-top: 6px;
     }
 
-    /* בלוק תגי אמון */
     .trust-badges {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -151,15 +184,10 @@
       color: #2e5a36;
     }
 
-    .trust-badge .emoji {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
+    .trust-badge .emoji { font-size: 20px; flex-shrink: 0; }
 
     @media (max-width: 480px) {
-      .trust-badges {
-        grid-template-columns: 1fr;
-      }
+      .trust-badges { grid-template-columns: 1fr; }
     }
 
     .shipping-badge {
@@ -177,10 +205,7 @@
       text-align: center;
     }
 
-    .shipping-badge .emoji {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
+    .shipping-badge .emoji { font-size: 20px; flex-shrink: 0; }
 
     .ingredient-note {
       font-size: 12.5px;
@@ -190,7 +215,6 @@
       line-height: 1.5;
     }
 
-    /* עיצוב סליידרים */
     .slider-section {
       background: #f7faf6;
       border: 1px solid #dce8db;
@@ -222,11 +246,7 @@
       justify-content: center;
     }
 
-    .slider-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+    .slider-container { display: flex; align-items: center; gap: 15px; }
 
     input[type="range"] {
       flex: 1;
@@ -235,17 +255,9 @@
       height: 6px;
     }
 
-    .slider-limits {
-      font-size: 12px;
-      color: #888;
-      font-weight: 600;
-    }
+    .slider-limits { font-size: 12px; color: #888; font-weight: 600; }
 
-    /* דינמיות - בחירת מנות */
-    .dynamic-list {
-      margin-top: 14px;
-      margin-bottom: 26px;
-    }
+    .dynamic-list { margin-top: 14px; margin-bottom: 26px; }
 
     .selection-row {
       display: flex;
@@ -276,11 +288,8 @@
       transition: border-color 0.2s;
     }
 
-    select:focus {
-      border-color: #4f8057;
-    }
+    select:focus { border-color: #4f8057; }
 
-    /* מחירון קטן קבוע מעל */
     .price-guide {
       font-size: 14.5px;
       color: #444;
@@ -292,11 +301,8 @@
       line-height: 1.8;
     }
 
-    .price-guide strong {
-      color: #2e5a36;
-    }
+    .price-guide strong { color: #2e5a36; }
 
-    /* טופס פרטי לקוח */
     .order-form {
       background: #f4f8f3;
       padding: 26px;
@@ -312,8 +318,9 @@
       margin-bottom: 16px;
     }
 
-    .form-group {
-      margin-bottom: 15px;
+    .form-group { 
+      margin-bottom: 15px; 
+      position: relative;
     }
 
     .form-group label {
@@ -335,12 +342,46 @@
       transition: border-color 0.2s;
     }
 
-    .form-group input:focus {
-      border-color: #4f8057;
-      outline: none;
+    .form-group input:focus { border-color: #4f8057; outline: none; }
+
+    /* חיפוש ערים ושדה השלמה */
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #c5dac2;
+      border-top: none;
+      z-index: 99;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #fff;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      max-height: 180px;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    /* סיכום הזמנה */
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .autocomplete-items div:hover {
+      background-color: #eaf5e8;
+      color: #2e5a36;
+      font-weight: bold;
+    }
+
+    .city-status {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-top: 6px;
+      display: none;
+    }
+    .city-status.success { color: #2e5a36; }
+    .city-status.error { color: #d9534f; }
+
     .summary-box {
       text-align: center;
       margin-top: 28px;
@@ -353,31 +394,29 @@
     }
 
     .warning-msg {
-      color: #b02a37;
+      color: #b58a00;
       font-size: 13.5px;
       font-weight: 600;
       margin-top: 8px;
       display: block;
     }
 
-    .info-box {
+    .info-box, .cities-box {
       background: #f4f8f3;
       padding: 20px 22px;
       border-radius: 12px;
-      margin-top: 28px;
+      margin-top: 20px;
       border: 1px solid #dce8db;
-      color: #555;
+      color: #444;
       font-size: 14.5px;
       line-height: 1.8;
     }
 
-    /* חלק אישי - הסיפור של דורי */
     .about-box {
       background: #f0f6ef;
       border: 1px solid #cbe0c8;
       padding: 28px;
       border-radius: 14px;
-      margin-top: 36px;
       line-height: 1.75;
       color: #333;
     }
@@ -389,8 +428,13 @@
       font-weight: 700;
     }
 
-    .about-box p {
-      font-size: 15px;
+    .about-box p { font-size: 15px; }
+
+    .section-label {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #2e5a36;
+      margin: 22px 0 8px 0;
     }
 
     .btn {
@@ -410,16 +454,7 @@
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: #1ebe5d;
-      transform: translateY(-1px);
-    }
-
-    .btn:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      transform: none;
-    }
+    .btn:hover { background: #1ebe5d; transform: translateY(-1px); }
   </style>
 </head>
 
@@ -433,122 +468,225 @@
     <div class="title-divider"></div>
   </div>
 
-  <!-- באנר הנחה להזמנה ראשונה -->
-  <div class="discount-banner">
-    <span class="discount-percent">15% הנחה 🎉</span>
-    <span class="discount-text">על ההזמנה הראשונה שלך</span>
-    <span class="discount-sub">ציינו בהודעת הוואטסאפ "הזמנה ראשונה" ונדאג להנחה</span>
+  <!-- ניווט טאבים -->
+  <div class="tabs">
+    <button class="tab-btn active" id="btn-order" onclick="switchTab('order')">בניית הזמנה</button>
+    <button class="tab-btn" id="btn-about" onclick="switchTab('about')">מי אנחנו</button>
   </div>
 
-  <div class="subtitle">
-    בנה את התפריט השבועי שלך בדיוק כמו שאתה אוהב.<br>
-    רכיבים אורגניים, בישול בשמן טבעיים בלבד וללא שמני זרעים
-  </div>
+  <!-- ===== טאב 1: בניית הזמנה ===== -->
+  <div id="tab-order" class="tab-content active">
 
-  <!-- בלוק תגי אמון -->
-  <div class="trust-badges">
-    <div class="trust-badge"><span class="emoji">🌿</span> 100% אורגני</div>
-    <div class="trust-badge"><span class="emoji">🚫</span> נקי משמני זרעים</div>
-    <div class="trust-badge"><span class="emoji">🥩</span> בשר ועוף איכותיים</div>
-    <div class="trust-badge"><span class="emoji">✋</span> רכיבים טבעיים בלבד</div>
-  </div>
-
-  <div class="shipping-badge">
-    <span class="emoji">🚚</span> משלוח חינם על כל הזמנה (מינימום הזמנה: 260 ₪)
-  </div>
-
-  <!-- מדריך מחירים מהיר -->
-  <div class="price-guide">
-    💡 <strong>מחירון הארוחות שלנו:</strong><br>
-    • מנה עיקרית לבחירה (כ-200 גרם בשר/עוף לפני בישול): <strong>45 ₪</strong><br>
-    • מנת אושפלו (אורז, בשר וירקות מבושלים יחד): <strong>60 ₪</strong><br>
-    • מנת תוספת לבחירה: <strong>20 ₪</strong>
-  </div>
-
-  <!-- חלק 1: סליידר עיקריות -->
-  <div class="slider-section">
-    <div class="slider-title">
-      <span>כמה מנות עיקריות תרצה השבוע?</span>
-      <span class="count" id="main-count-display">0</span>
+    <div class="discount-banner">
+      <span class="discount-percent">15% הנחה 🎉</span>
+      <span class="discount-text">על ההזמנה הראשונה שלך</span>
+      <span class="discount-sub">ציינו בהודעת הוואטסאפ "הזמנה ראשונה" ונדאג להנחה</span>
     </div>
-    <div class="slider-container">
-      <span class="slider-limits">0</span>
-      <input type="range" id="main-slider" min="0" max="7" value="0">
-      <span class="slider-limits">7</span>
+
+    <div class="subtitle">
+      בנה את התפריט השבועי שלך בדיוק כמו שאתה אוהב.<br>
+      רכיבים אורגניים, בישול בשמן טבעיים בלבד וללא שמני זרעים
     </div>
+
+    <div class="trust-badges">
+      <div class="trust-badge"><span class="emoji">🌿</span> 100% אורגני</div>
+      <div class="trust-badge"><span class="emoji">🚫</span> נקי משמני זרעים</div>
+      <div class="trust-badge"><span class="emoji">🥩</span> בשר ועוף איכותיים</div>
+      <div class="trust-badge"><span class="emoji">✋</span> רכיבים טבעיים בלבד</div>
+    </div>
+
+    <div class="shipping-badge">
+      <span class="emoji">🚚</span> משלוח חינם על כל הזמנה (מינימום הזמנה: 145 ₪)
+    </div>
+
+    <div class="price-guide">
+      💡 <strong>מחירון הארוחות שלנו:</strong><br>
+      • מנה עיקרית לבחירה (כ-200 גרם בשר/עוף לפני בישול): <strong>45 ₪</strong><br>
+      • מנת אושפלו (אורז, בשר וירקות מבושלים יחד): <strong>60 ₪</strong><br>
+      • מנת תוספת לבחירה: <strong>20 ₪</strong>
+    </div>
+
+    <div class="slider-section">
+      <div class="slider-title">
+        <span>כמה מנות עיקריות תרצה השבוע?</span>
+        <span class="count" id="main-count-display">0</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-limits">0</span>
+        <input type="range" id="main-slider" min="0" max="7" value="0">
+        <span class="slider-limits">7</span>
+      </div>
+    </div>
+
+    <div class="dynamic-list" id="main-dishes-container"></div>
+
+    <div class="slider-section">
+      <div class="slider-title">
+        <span>כמה מנות תוספת תרצה השבוע?</span>
+        <span class="count" id="side-count-display">0</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-limits">0</span>
+        <input type="range" id="side-slider" min="0" max="7" value="0">
+        <span class="slider-limits">7</span>
+      </div>
+    </div>
+
+    <div class="dynamic-list" id="side-dishes-container"></div>
+
+    <div class="order-form">
+      <div class="form-title">פרטי משלוח ויצירת קשר</div>
+      <div class="form-group">
+        <label for="full-name">שם מלא:</label>
+        <input type="text" id="full-name">
+      </div>
+      
+      <!-- שדה עיר עם חיפוש ואוטוקומפליט -->
+      <div class="form-group">
+        <label for="city-input">עיר / יישוב:</label>
+        <input type="text" id="city-input" placeholder="הקלד עיר (למשל: תל אביב, מודיעין, רעננה...)" autocomplete="off">
+        <div id="autocomplete-list" class="autocomplete-items"></div>
+        <div id="city-status" class="city-status"></div>
+      </div>
+
+      <!-- שדה כתובת מפורטת -->
+      <div class="form-group">
+        <label for="address">רחוב, מספר בית, קומה ודירה (או שם חברה במשרד):</label>
+        <input type="text" id="address">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">מספר טלפון:</label>
+        <input type="tel" id="phone">
+      </div>
+    </div>
+
+    <div class="summary-box">
+      סה"כ לתשלום: <span id="total-price">0</span> ₪
+      <span id="warning" class="warning-msg" style="display:none;"></span>
+    </div>
+
+    <button id="submit-order" class="btn">שליחת הזמנה ב-WhatsApp</button>
+
   </div>
 
-  <!-- רשימת בחירת עיקריות דינמית -->
-  <div class="dynamic-list" id="main-dishes-container"></div>
+  <!-- ===== טאב 2: מי אנחנו ===== -->
+  <div id="tab-about" class="tab-content">
 
-  <!-- חלק 2: סליידר תוספות -->
-  <div class="slider-section">
-    <div class="slider-title">
-      <span>כמה מנות תוספת תרצה השבוע?</span>
-      <span class="count" id="side-count-display">0</span>
+    <div class="about-box">
+      <h3>👨‍🍳 היי, אני דורי</h3>
+      <p>
+        לקחתי על עצמי משימה להנגיש אוכל אמיתי, בריא ומזין לכל מי שרוצה לפגוש את הטבע דרך הצלחת ולייעל את האנרגיה שלו במהלך היום.
+      </p>
+      <p>
+        מאז שהתחלתי לאכול אורגני ולהימנע משמני זרעים, הבנתי מהר מאוד שאין לי באמת אופציה לאכול בחוץ – ושאני חייב לבשל הכל בבית. כשחשבתי על כל האנשים שעובדים במשרות עמוסות ותהיתי איך הם יכולים להרשות לעצמם לאכול בריא באמת במהלך יום העבודה, נולד הרעיון ל-מזון אמיתי.
+      </p>
+      <p>
+        בעיניי, אוכל הוא הרבה מעבר לדלק – המזון שאנחנו אוכלים הופך ממש לחלק מאיתנו. ככל שנזין את עצמנו בצורה נקייה יותר, באוכל פשוט, טעים וללא תוספים מעובדים, כך נחיה חיים חזקים, שלווים ומספקים יותר.
+      </p>
+      <p>
+        למדתי גם המון מהקורס "חוקי בטן" של מתן חכימי, ולמדתי שם כמה כללי זהב פשוטים לתזונה נקייה ומאוזנת - עקרונות שהטמעתי גם באופן שבו אני בונה ומבשל כל ארוחה כאן.
+      </p>
+      <p>
+        אני מבשל את הארוחות האלה בדיוק בסטנדרט הגבוה שאני דורש מעצמי – ומזמין אתכם לאכול נקי, באמת.
+      </p>
     </div>
-    <div class="slider-container">
-      <span class="slider-limits">0</span>
-      <input type="range" id="side-slider" min="0" max="7" value="0">
-      <span class="slider-limits">7</span>
+
+    <div class="section-label">🚚 אזורי משלוח</div>
+    <div class="cities-box">
+      <strong>ערים ורשויות מרכזיות:</strong><br>
+      תל אביב-יפו, רמת גן, גבעתיים, בני ברק, פתח תקווה, קריית אונו, גבעת שמואל, גני תקווה, אור יהודה, יהוד-מונוסון, אזור, רעננה, כפר סבא, הוד השרון, רמת השרון, הרצליה, ראש העין, אלעד, שהם, מודיעין-מכבים-רעות, מודיעין עילית, ראשון לציון, חולון, בת ים, רחובות, נס ציונה, יבנה, לוד, רמלה, באר יעקב, מזכרת בתיה, קריית עקרון, גדרה, גן יבנה.<br><br>
+      <strong>מושבים, קיבוצים ויישובי המועצות האזוריות:</strong><br>
+      חבל מודיעין, דרום השרון, חוף השרון (חלק דרומי), גזר, ברנר, גדרות, חבל יבנה, גן רווה, שדות דן, יישובי לפיד ומכבים.
     </div>
-  </div>
 
-  <!-- רשימת בחירת תוספות דינמית -->
-  <div class="dynamic-list" id="side-dishes-container"></div>
-
-  <!-- תיבת מידע לוגיסטית -->
-  <div class="info-box">
-    ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
-    🚚 משלוחים מרוכזים לאזור המרכז בימי ראשון בין השעות 10:00-13:00<br>
-    🎯 המנוי מוגבל למספר לקוחות מוגדר בחודש לשמירה על איכות מקסימלית<br>
-    💡 האוכל מגיע בקופסאות סיבי קני סוכר אקולוגיות המיועדות לתנור ומיקרוגל
-  </div>
-
-  <!-- טופס פרטים -->
-  <div class="order-form">
-    <div class="form-title">פרטי משלוח ויצירת קשר</div>
-    <div class="form-group">
-      <label for="full-name">שם מלא:</label>
-      <input type="text" id="full-name" placeholder="ישראל ישראלי">
+    <div class="section-label">📦 מידע לוגיסטי</div>
+    <div class="info-box">
+      ⏰ <strong>הזמנות עד יום חמישי בשעה 17:00</strong><br>
+      🚚 משלוחים בכל יום ראשון בין השעות 10:00-13:00<br>
+      🎯 המנוי מוגבל למספר לקוחות מוגדר בחודש לשמירה על איכות מקסימלית<br>
+      💡 האוכל מגיע בקופסאות סיבי קני סוכר אקולוגיות המיועדות לתנור ומיקרוגל
     </div>
-    <div class="form-group">
-      <label for="address">כתובת משלוח ומשרד (חברה, קומה, חדר):</label>
-      <input type="text" id="address" placeholder="רוטשילד 42, תל אביב, חברת הייטק, קומה 5">
-    </div>
-    <div class="form-group">
-      <label for="phone">מספר טלפון:</label>
-      <input type="tel" id="phone" placeholder="050-1234567">
-    </div>
+
   </div>
-
-  <!-- תיבת סיכום ומניעת שליחה -->
-  <div class="summary-box">
-    סה"כ לתשלום: <span id="total-price">0</span> ₪
-    <span id="warning" class="warning-msg">מינימום הזמנה למשלוח הוא 260 ₪</span>
-  </div>
-
-  <!-- חלק אישי: הסיפור של דורי -->
-  <div class="about-box">
-    <h3>👨‍🍳 היי, אני דורי</h3>
-    <p>
-      לקחתי על עצמי משימה להנגיש אוכל אמיתי, בריא ומזין לכל מי שרוצה לפגוש את הטבע דרך הצלחת ולייעל את האנרגיה שלו במהלך היום.
-    </p>
-    <p>
-מאז שהתחלתי לאכול אורגני ולהימנע משמני זרעים, הבנתי מהר מאוד שאין לי באמת אופציה לאכול בחוץ – ושאני חייב לבשל הכל בבית. כשחשבתי על כל האנשים שעובדים במשרות עמוסות ותהיתי איך הם יכולים להרשות לעצמם לאכול בריא באמת במהלך יום העבודה, נולד הרעיון ל-מזון אמיתי.
-
-בעיניי, אוכל הוא הרבה מעבר לדלק – המזון שאנחנו אוכלים הופך ממש לחלק מאיתנו. ככל שנזין את עצמנו בצורה נקייה יותר, באוכל פשוט, טעים וללא תוספים מעובדים, כך נחיה חיים חזקים, שלווים ומספקים יותר.    </p>
-    <p>
-    אני מבשל את הארוחות האלה בדיוק בסטנדרט הגבוה שאני דורש מעצמי – ומזמין אתכם לאכול נקי, באמת.</p>
-  </div>
-
-  <!-- כפתור שליחה לוואטסאפ -->
-  <button id="submit-order" class="btn" disabled>שליחת הזמנה ב-WhatsApp</button>
 
 </div>
 
 <script>
-  // רשימת המנות והמחירים עם ברירת מחדל של בחירה
+  function switchTab(tab) {
+    document.getElementById('tab-order').classList.toggle('active', tab === 'order');
+    document.getElementById('tab-about').classList.toggle('active', tab === 'about');
+    document.getElementById('btn-order').classList.toggle('active', tab === 'order');
+    document.getElementById('btn-about').classList.toggle('active', tab === 'about');
+  }
+
+  const MIN_ORDER = 145;
+
+  /* רשימת הטווח של ערי ויישובי המשלוח */
+  const allowedCities = [
+    "תל אביב", "תל אביב - יפו", "תל אביב יפו", "רמת גן", "גבעתיים", "בני ברק", "פתח תקווה", "קריית אונו", "גבעת שמואל", "גני תקווה", 
+    "אור יהודה", "יהוד", "יהוד-מונוסון", "אזור", "רעננה", "כפר סבא", "הוד השרון", "רמת השרון", "הרצליה", "ראש העין", 
+    "אלעד", "שהם", "מודיעין", "מודיעין-מכבים-רעות", "מודיעין עילית", "ראשון לציון", "חולון", "בת ים", "רחובות", "נס ציונה", 
+    "יבנה", "לוד", "רמלה", "באר יעקב", "מזכרת בתיה", "קריית עקרון", "גדרה", "גן יבנה",
+    "אחיסמך", "אחיעזר", "בארות יצחק", "בית נחמיה", "בית עריף", "בן שמן", "בני עטרות", "גימזו", "גנתון", "חדיד", "טירת יהודה", "כפר דניאל", "כפר טרומן", "כפר רות", "מבוא מודיעים", "מגשימים", "מזור", "נופך", "נחלים", "רינתיה", "שילת",
+    "אייל", "אלישמע", "גבעת השלושה", "גבעת חן", "גן חיים", "גני עם", "חגור", "חורשים", "ירחיב", "כפר מלל", "כפר סירקין", "מתן", "עינת", "צופית", "צור יצחק", "צור נתן", "רמות השבים", "שדה ורבורג",
+    "רשפון", "שפיים", "געש", "יקום", "אודים", "ארסוף", "כפר שמריהו",
+    "נצר סירני", "ישרש", "מצליח", "סתריה", "עזריה", "בית חשמונאי", "כפר שמואל", "משמר איילון", "כרמי יוסף", "פתחיים", "פדיה", "גזר", "נחשון", "חולדה",
+    "גבעת ברנר", "קבוצת שילר", "בניה", "קדרון", "מישר", "שדמה", "כפר מרדכי", "משגב דב", "גן הדרום", "עשרת",
+    "בית גמליאל", "בן זכאי", "בני דרום", "ניר גלים", "קבוצת יבנה", "כרם ביבנה", "אירוס", "בית חנן", "בית עובד", "נטע", "פלמחים", "גאליה", "כפר הנגיד",
+    "כפר חב\"ד", "צפריה", "זיתן", "יגל", "חמד", "משמר השבעה", "גנות", "ניר צבי",
+    "לפיד", "כפר אורנים", "חשמונאים", "מבוא חורון"
+  ];
+
+  /* מנגנון חיפוש ואימות עיר */
+  const cityInput = document.getElementById("city-input");
+  const autocompleteList = document.getElementById("autocomplete-list");
+  const cityStatus = document.getElementById("city-status");
+
+  cityInput.addEventListener("input", function() {
+    const val = this.value.trim();
+    autocompleteList.innerHTML = "";
+    cityStatus.style.display = "none";
+
+    if (!val) return;
+
+    // סינון ערים שמתאימות לחיפוש
+    const matches = allowedCities.filter(c => c.toLowerCase().includes(val.toLowerCase()));
+
+    matches.slice(0, 6).forEach(city => {
+      const item = document.createElement("div");
+      item.textContent = city;
+      item.addEventListener("click", function() {
+        cityInput.value = city;
+        autocompleteList.innerHTML = "";
+        checkCityMatch(city);
+      });
+      autocompleteList.appendChild(item);
+    });
+
+    checkCityMatch(val);
+  });
+
+  function checkCityMatch(val) {
+    const match = allowedCities.find(c => c.toLowerCase() === val.toLowerCase());
+    if (match) {
+      cityStatus.textContent = "מעולה! אנחנו מגיעים אלייך 🚚✨";
+      cityStatus.className = "city-status success";
+      cityStatus.style.display = "block";
+    } else if (val.length >= 3) {
+      cityStatus.textContent = "כרגע אנחנו עדיין לא מגיעים לאזור הזה, אבל נשמח לעדכן אותך בעתיד!";
+      cityStatus.className = "city-status error";
+      cityStatus.style.display = "block";
+    }
+  }
+
+  // סגירת רשימת החיפוש כשלוחצים מחוץ לשדה
+  document.addEventListener("click", function (e) {
+    if (e.target !== cityInput) {
+      autocompleteList.innerHTML = "";
+    }
+  });
+
   const mainOptions = [
     { name: "-- בחר מנה עיקרית --", value: "", price: 0 },
     { name: "קציצות בקר ברוטב עגבניות (45 ₪)", value: "קציצות בקר ברוטב עגבניות", price: 45 },
@@ -566,26 +704,17 @@
     { name: "שעועית ירוקה עם שום (20 ₪)", value: "שעועית ירוקה עם שום", price: 20 }
   ];
 
-  // רשימת רכיבים בסיסית לכל מנה (לעדכון בעתיד לפי המתכונים המדויקים)
   const ingredientsMap = {
-  "קציצות בקר ברוטב עגבניות": "בקר טחון אורגני, עגבניות תמר מושות, בצל, תפוח אדמה, פטרוזיליה, כוסברה, שום, רסק עגבניות מרוכז, שמן אבוקדו, כמון, בהרט, פפריקה מתוקה, מלח ים, פלפל שחור",
-  
-  "חזה עוף מוקפץ": "חזה עוף אורגני, פלפל אדום, פלפל צהוב, בצל ירוק, בצל סגול, שום, ג'ינג'ר טרי, שמן אבוקדו, רוטב סויה תסיסה טבעית, סילאן טבעי, שומשום מלא",
-  
-  "כרעיים בתנור": "כרעי עוף אורגניות, שמן אבוקדו, שום כתוש, מיץ לימון טרי, ענפי רוזמרין, טימין, פפריקה מתוקה, אורגנו יבש, מלח ים, פלפל שחור גרוס",
-  
-  "חזה עוף טיקה מסאלה": "חזה עוף אורגני, עגבניות מרוסקות, קרם קוקוס טבעי, בצל, שום, ג'ינג'ר טרי, שמן אבוקדו, גראם מסאלה, כורכום, כמון, כוסברה טרייה, מלח ים",
-  
-  "אושפלו": "בשר בקר אורגני, אורז מלא, גזר חתוך לרצועות, בצל, ראשי שום שלמים, שמן אבוקדו, כמון פרסי, גרגירי כוסברה, מלח ים, פלפל שחור",
-  
-  "בטטות צלויות": "בטטה, שמן אבוקדו, טימין טרי, פפריקה מתוקה, מעט סילאן טבעי, מלח אטלנטי, פלפל שחור גרוס",
-  
-  "תפוחי אדמה צלויים": "תפוחי אדמה, שמן אבוקדו, שום גבישי, פפריקה מתוקה, רוזמרין, מלח אטלנטי, פלפל שחור גרוס",
-  
-  "מג'דרה אורז מלא ועדשים": "אורז מלא, עדשים חומות (ירוקות), בצל מוזהב בשמן אבוקדו, כמון, בהרט, מלח ים, פלפל שחור",
-  
-  "שעועית ירוקה עם שום": "שעועית ירוקה עדינה, שום פרוס, שמן אבוקדו, מיץ לימון טרי, שומשום קלוי, מלח אטלנטי"
-};
+    "קציצות בקר ברוטב עגבניות": "בקר טחון אורגני, עגבניות תמר מושות, בצל, תפוח אדמה, פטרוזיליה, כוסברה, שום, רסק עגבניות מרוכז, שמן אבוקדו, כמון, בהרט, פפריקה מתוקה, מלח ים, פלפל שחור",
+    "חזה עוף מוקפץ": "חזה עוף אורגני, פלפל אדום, פלפל צהוב, בצל ירוק, בצל סגול, שום, ג'ינג'ר טרי, שמן אבוקדו, רוטב סויה תסיסה טבעית, סילאן טבעי, שומשום מלא",
+    "כרעיים בתנור": "כרעי עוף אורגניות, שמן אבוקדו, שום כתוש, מיץ לימון טרי, ענפי רוזמרין, טימין, פפריקה מתוקה, אורגנו יבש, מלח ים, פלפל שחור גרוס",
+    "חזה עוף טיקה מסאלה": "חזה עוף אורגני, עגבניות מרוסקות, קרם קוקוס טבעי, בצל, שום, ג'ינג'ר טרי, שמן אבוקדו, גראם מסאלה, כורכום, כמון, כוסברה טרייה, מלח ים",
+    "אושפלו": "בשר בקר אורגני, אורז מלא, גזר חתוך לרצועות, בצל, ראשי שום שלמים, שמן אבוקדו, כמון פרסי, גרגירי כוסברה, מלח ים, פלפל שחור",
+    "בטטות צלויות": "בטטה, שמן אבוקדו, טימין טרי, פפריקה מתוקה, מעט סילאן טבעי, מלח אטלנטי, פלפל שחור גרוס",
+    "תפוחי אדמה צלויים": "תפוחי אדמה, שמן אבוקדו, שום גבישי, פפריקה מתוקה, רוזמרין, מלח אטלנטי, פלפל שחור גרוס",
+    "מג'דרה אורז מלא ועדשים": "אורז מלא, עדשים חומות (ירוקות), בצל מוזהב בשמן אבוקדו, כמון, בהרט, מלח ים, פלפל שחור",
+    "שעועית ירוקה עם שום": "שעועית ירוקה עדינה, שום פרוס, שמן אבוקדו, מיץ לימון טרי, שומשום קלוי, מלח אטלנטי"
+  };
 
   const mainSlider = document.getElementById('main-slider');
   const sideSlider = document.getElementById('side-slider');
@@ -594,13 +723,11 @@
   const mainContainer = document.getElementById('main-dishes-container');
   const sideContainer = document.getElementById('side-dishes-container');
 
-  // עדכון שורת הרכיבים מתחת לבחירה
   function updateIngredientNote(select, note) {
     const ingredients = ingredientsMap[select.value];
     note.textContent = ingredients ? `רכיבים: ${ingredients}` : '';
   }
 
-  // פונקציה לייצור תיבות הבחירה דינמית
   function renderSelections(count, options, container, prefix) {
     const existingSelects = container.querySelectorAll('select');
     const savedValues = Array.from(existingSelects).map(s => s.value);
@@ -608,7 +735,6 @@
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
       const wrapper = document.createElement('div');
-
       const row = document.createElement('div');
       row.className = 'selection-row';
 
@@ -626,9 +752,7 @@
         select.appendChild(optionElement);
       });
 
-      if (savedValues[i - 1]) {
-        select.value = savedValues[i - 1];
-      }
+      if (savedValues[i - 1]) select.value = savedValues[i - 1];
 
       const note = document.createElement('div');
       note.className = 'ingredient-note';
@@ -648,61 +772,47 @@
     calculateTotal();
   }
 
-  // עדכון סליידר עיקריות
   mainSlider.addEventListener('input', (e) => {
     const val = parseInt(e.target.value);
     mainCountDisplay.textContent = val;
     renderSelections(val, mainOptions, mainContainer, 'עיקרית');
   });
 
-  // עדכון סליידר תוספות
   sideSlider.addEventListener('input', (e) => {
     const val = parseInt(e.target.value);
     sideCountDisplay.textContent = val;
     renderSelections(val, sideOptions, sideContainer, 'תוספת');
   });
 
-  // חישוב סכום כולל
   function calculateTotal() {
     let total = 0;
 
-    // חישוב עיקריות נבחרות
-    const mainSelects = document.querySelectorAll('.עיקרית-select');
-    mainSelects.forEach(select => {
-      const selectedOption = select.options[select.selectedIndex];
-      total += parseInt(selectedOption.dataset.price || 0);
+    document.querySelectorAll('.עיקרית-select').forEach(select => {
+      total += parseInt(select.options[select.selectedIndex].dataset.price || 0);
     });
-
-    // חישוב תוספות נבחרות
-    const sideSelects = document.querySelectorAll('.תוספת-select');
-    sideSelects.forEach(select => {
-      const selectedOption = select.options[select.selectedIndex];
-      total += parseInt(selectedOption.dataset.price || 0);
+    document.querySelectorAll('.תוספת-select').forEach(select => {
+      total += parseInt(select.options[select.selectedIndex].dataset.price || 0);
     });
 
     document.getElementById('total-price').textContent = total;
 
-    // הגבלת מינימום 260 ש"ח
-    const submitBtn = document.getElementById('submit-order');
     const warning = document.getElementById('warning');
-
-    if (total >= 260) {
-      submitBtn.disabled = false;
-      warning.style.display = 'none';
-    } else {
-      submitBtn.disabled = true;
+    if (total > 0 && total < MIN_ORDER) {
+      warning.textContent = `עוד ${MIN_ORDER - total} ₪ לקבלת משלוח 🚚`;
       warning.style.display = 'block';
+    } else {
+      warning.style.display = 'none';
     }
   }
 
-  // שליחה לוואטסאפ
   document.getElementById('submit-order').addEventListener('click', () => {
     const name = document.getElementById('full-name').value.trim();
+    const city = document.getElementById('city-input').value.trim();
     const address = document.getElementById('address').value.trim();
     const phone = document.getElementById('phone').value.trim();
 
-    if (!name || !address || !phone) {
-      alert('נא למלא את כל פרטי המשלוח ויצירת קשר לפני השליחה.');
+    if (!name || !city || !address || !phone) {
+      alert('נא למלא את כל פרטי המשלוח ויצירת קשר (כולל עיר וכתובת) לפני השליחה.');
       return;
     }
 
@@ -732,17 +842,14 @@
 
 *פרטי משלוח:*
 👤 שם: ${name}
+🏙️ עיר: ${city}
 📍 כתובת: ${address}
 📞 טלפון: ${phone}
 
 `;
 
-    if (mainSelects.length > 0) {
-      message += `*מנות עיקריות שהרכבתי:*\n${mainItemsText}\n`;
-    }
-    if (sideSelects.length > 0) {
-      message += `*תוספות שבחרתי:*\n${sideItemsText}\n`;
-    }
+    if (mainSelects.length > 0) message += `*מנות עיקריות שהרכבתי:*\n${mainItemsText}\n`;
+    if (sideSelects.length > 0) message += `*תוספות שבחרתי:*\n${sideItemsText}\n`;
 
     message += `*סה"כ לתשלום:* ${total} ₪`;
 
