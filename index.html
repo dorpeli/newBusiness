@@ -103,51 +103,42 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* באנר הנחה */
-    .discount-banner {
+    /* באנר מודעת היכרות */
+    .intro-banner {
       position: relative;
-      background: linear-gradient(135deg, #ff8a4c 0%, #ff6a3d 100%);
+      background: linear-gradient(135deg, #2e5a36 0%, #1e3d24 100%);
       border-radius: 16px;
-      padding: 20px 24px;
+      padding: 24px;
       margin-bottom: 28px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(255, 106, 61, 0.28);
-      overflow: hidden;
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(46, 90, 54, 0.25);
     }
 
-    .discount-banner::before, .discount-banner::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 22px;
-      height: 22px;
-      background: #eaf3e7;
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
-    .discount-banner::before { right: -11px; }
-    .discount-banner::after { left: -11px; }
-
-    .discount-percent {
-      font-size: 30px;
+    .intro-title {
+      font-size: 24px;
       font-weight: 800;
       color: #ffffff;
-      display: block;
-      letter-spacing: -0.5px;
+      margin-bottom: 6px;
     }
-    .discount-text {
-      font-size: 15.5px;
+
+    .intro-sub {
+      font-size: 17px;
       font-weight: 700;
-      color: #fff3ea;
-      display: block;
-      margin-top: 2px;
+      color: #d1ead0;
+      margin-bottom: 14px;
     }
-    .discount-sub {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: #ffe4d6;
-      display: block;
-      margin-top: 6px;
+
+    .intro-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 600;
+      margin-top: 10px;
     }
 
     .trust-badges {
@@ -698,10 +689,14 @@
   <!-- ===== טאב 2: בניית הזמנה ===== -->
   <div id="tab-order" class="tab-content">
 
-    <div class="discount-banner">
-      <span class="discount-percent">15% הנחה 🎉</span>
-      <span class="discount-text">על ההזמנה הראשונה שלך</span>
-      <span class="discount-sub">ציינו בהודעת הוואטסאפ "הזמנה ראשונה" ונדאג להנחה</span>
+    <!-- באנר היכרות חדש -->
+    <div class="intro-banner">
+      <div class="intro-title">בא לכם לטעום? 😋</div>
+      <div class="intro-sub">הזמינו עכשיו מנת היכרות בודדת ראשונה!</div>
+      <div class="intro-features">
+        <span>🚗 משלוח ב-15 ש״ח בלבד או איסוף עצמי מתל אביב</span>
+        <span>🥒 בונוס בכל הזמנה: כבוש ביתי במתנה!</span>
+      </div>
     </div>
 
     <div class="subtitle">
@@ -717,7 +712,7 @@
     </div>
 
     <div class="shipping-badge">
-      <span class="emoji">🚚</span> משלוח חינם על כל הזמנה (מינימום הזמנה: 145 ₪)
+      <span class="emoji">🚚</span> משלוח ב-15 ₪ על מנת היכרות | איסוף עצמי בחינם מתל אביב
     </div>
 
     <div class="price-guide">
@@ -795,7 +790,7 @@
   <div id="tab-about" class="tab-content">
 
     <div class="about-box">
-      <h3>👨‍🍳 היי, אני דורי</h3>
+      <h3>👨‍🍳 היי, אני דורי[cite: 1]</h3>
       <p>
         לקחתי על עצמי משימה להנגיש אוכל אמיתי, בריא ומזין לכל מי שרוצה לפגוש את הטבע דרך הצלחת ולייעל את האנרגיה שלו במהלך היום.
       </p>
@@ -845,8 +840,6 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  const MIN_ORDER = 145;
 
   /* רשימת הטווח של ערי ויישובי המשלוח */
   const allowedCities = [
@@ -1021,14 +1014,6 @@
     });
 
     document.getElementById('total-price').textContent = total;
-
-    const warning = document.getElementById('warning');
-    if (total > 0 && total < MIN_ORDER) {
-      warning.textContent = `עוד ${MIN_ORDER - total} ₪ לקבלת משלוח 🚚`;
-      warning.style.display = 'block';
-    } else {
-      warning.style.display = 'none';
-    }
   }
 
   document.getElementById('submit-order').addEventListener('click', () => {
@@ -1057,6 +1042,11 @@
       sideItemsText += `  ${idx + 1}. ${select.value}\n`;
     });
 
+    if (mainSelects.length === 0 && sideSelects.length === 0) {
+      alert('נא לבחור לפחות מנה אחת להזמנה.');
+      return;
+    }
+
     if (unselected) {
       alert('נא לבחור מנה בכל אחד מהשדות לפני שליחת ההזמנה.');
       return;
@@ -1064,20 +1054,13 @@
 
     const total = document.getElementById('total-price').textContent;
 
-    let message = `היי דורי, אני רוצה לבצע הזמנה שבועית!
-
-*פרטי משלוח:*
-👤 שם: ${name}
-🏙️ עיר: ${city}
-📍 כתובת: ${address}
-📞 טלפון: ${phone}
-
-`;
+    let message = `היי דורי, אני רוצה לבצע הזמנה! 🥒✨\n\n*פרטי משלוח:*\n👤 שם: ${name}\n🏙️ עיר: ${city}\n📍 כתובת: ${address}\n📞 טלפון: ${phone}\n\n`;
 
     if (mainSelects.length > 0) message += `*מנות עיקריות שהרכבתי:*\n${mainItemsText}\n`;
     if (sideSelects.length > 0) message += `*תוספות שבחרתי:*\n${sideItemsText}\n`;
 
-    message += `*סה"כ לתשלום:* ${total} ₪`;
+    message += `🎁 *בונוס:* כבוש ביתי במתנה!\n`;
+    message += `*סה"כ לתשלום:* ${total} ₪ (לא כולל משלוח 15 ₪ / איסוף עצמי)`;
 
     const whatsappUrl = `https://wa.me/972504300624?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappUrl;
